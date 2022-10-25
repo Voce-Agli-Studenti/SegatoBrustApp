@@ -1,0 +1,48 @@
+{
+	"short_name": "SegatoBrustolon APP",
+	"name": "SegatoBrust APP",
+	"icons": [
+		{
+			"src": "/assets/img/icon-192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "/assets/img/icon-512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	],
+	"shortcuts": [
+		{
+			"name": "News",
+			"description": "Sfoglia le ultime notizie e circolari dell'istituto",
+			"url": "/news/",
+			"icons": [
+				{
+					"src": "/assets/img/icons/news.png",
+					"type": "image/png",
+					"purpose": "any"
+				}
+			]
+		},
+		{
+			"name": "Orario",
+			"description": "Visualizza l'orario della tua classe",
+			"url": "/orario/",
+			"icons": [
+				{
+					"src": "/assets/img/icons/schedule.png",
+					"type": "image/png",
+					"purpose": "any"
+				}
+			]
+		}
+	],
+	"id": "ml.iacca.segato.feedback",
+	"start_url": "/?source=pwa",
+	"background_color": "#2a303c",
+	"display": "standalone",
+	"scope": "feedback.segato.iacca.ml",
+	"theme_color": "#2a303c"
+}
