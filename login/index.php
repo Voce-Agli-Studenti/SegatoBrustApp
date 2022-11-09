@@ -3,10 +3,11 @@ set_include_path($_SERVER['DOCUMENT_ROOT']);
 define("PAGE_TITLE", "Accedi");
 define("NAVIGATION_PAGE", "");
 
-include "includes/utils/commons.php";
-include "includes/utils/moodle_connections.php";
 
-
+require_once "includes/utils/session.php";
+require_once "includes/utils/commons.php";
+require_once "includes/utils/moodle_connections.php";
+require_once "includes/utils/database/users.php";
 
 if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 	$pass = true;
@@ -15,7 +16,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 		$username_error = "L'username è obbligatorio";
 		$pass = false;
 	}
-	
+
 	if (!isset($_POST['password']) || empty($_POST['password'])) {
 		$password_error = "La password è obbligatoria";
 		$pass = false;
@@ -25,13 +26,34 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		$result = moodleLogin($username, $password);
+		$moodle_login = moodle_login($username, $password);
+		
+		if ($moodle_login) {
+			$user_data = moodle_get_user_info($moodle_login['token'], $username);
 
-		if ($result) {
-			redirect("/");
+			if (empty($user_data)) {
+				$password_error = "Nome utente o password errati";
+			} else {
+				$user_data = $user_data[0];
+				$user_id = get_user_id($user_data['id']);
+				if (user_exists_by_id($user_id)) {
+					// L'utente è già registrato. Aggiorna le informazioni
+					edit_user($user_id, $user_data['fullname'], $user_data['email'], $user_data['profileimageurl']);
+				} else {
+					// L'utente non è registrato nel DB. Lo registra
+					
+					add_user($user_data['id'], $user_data['fullname'], $user_data['email'], $user_data['profileimageurl']);
+				}
+
+				setcookie("moodle_token", $moodle_login['token'], time() + 60 * 60 * 24 * 365, "/", "", true, false);
+				$_SESSION['user_id'] = $user_id;
+				redirect("/");
+			}
+
+		} else {
+			$password_error = "Nome utente o password errati";
 		}
 	}
-
 
 }
 
@@ -66,7 +88,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 								</label>
 								<input type="text" placeholder="Username" name="username" class="input input-bordered w-full" />
 								<label class="label">
-									<span class="label-text-alt text-error"><?=$username_error ?? ""?></span>
+									<span class="label-text-alt text-error"><?=$username_error ?? "";?></span>
 								</label>
 							</div>
 
@@ -76,8 +98,12 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 								</label>
 								<input type="password" placeholder="Password" name="password" class="input input-bordered w-full" />
 								<label class="label">
-									<span class="label-text-alt text-error"><?=$password_error ?? ""?></span>
+									<span class="label-text-alt text-error"><?=$password_error ?? "";?></span>
 								</label>
+							</div>
+
+							<div class="flex justify-end">
+								<button type="submit" class="btn btn-outline btn-accent">ACCEDI</button>
 							</div>
 
 						</form>

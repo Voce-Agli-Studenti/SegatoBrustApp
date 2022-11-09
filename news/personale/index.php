@@ -4,6 +4,8 @@ define("PAGE_TITLE", "Comunicati personale scolastico");
 define("NAVIGATION_PAGE", "news");
 define("NAVIGATION_PAGE_NEWS", "personale");
 
+require_once "includes/utils/session.php";
+
 $com = file_get_contents("https://scuola.gioiacca9.tk/api/comunicati/personale/");
 $com = json_decode($com, true);
 

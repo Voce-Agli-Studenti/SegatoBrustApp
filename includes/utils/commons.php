@@ -2,7 +2,7 @@
 
 set_include_path($_SERVER['DOCUMENT_ROOT']);
 
-function httpPostRequest($url, $data) {
+function http_post_request($url, $data) {
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -18,4 +18,9 @@ function redirect($url) {
 	header("Location: " . $url);
 
 	die();
+}
+
+
+function get_user_id($id) {
+	return hash_hmac("sha256", $id, "user_id");
 }

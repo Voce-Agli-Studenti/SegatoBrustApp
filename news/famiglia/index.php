@@ -4,6 +4,8 @@ define("PAGE_TITLE", "Comunicati scuola-famiglia");
 define("NAVIGATION_PAGE", "news");
 define("NAVIGATION_PAGE_NEWS", "famiglia");
 
+require_once "includes/utils/session.php";
+
 $com = file_get_contents("https://scuola.gioiacca9.tk/api/comunicati/famiglia/");
 $com = json_decode($com, true);
 

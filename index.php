@@ -3,6 +3,8 @@ set_include_path($_SERVER['DOCUMENT_ROOT']);
 define("PAGE_TITLE", "SegatoBrusto App");
 define("NAVIGATION_PAGE", "home");
 
+require_once "includes/utils/session.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +23,11 @@ define("NAVIGATION_PAGE", "home");
 		<div class="transition-slide-down">
 			<div class="container max-w-3xl mx-auto py-6 px-6">
 				<h1 class="text-4xl font-bold text-base-content">
+					<?php if (USER_IS_LOGGED): ?>
+					<span class="text-accent">Ciao</span> <?=htmlspecialchars(USER['name'])?>
+					<?php else:?>
 					<span class="text-accent">Accedi</span> a SegatoBrust App
+					<?php endif;?>
 				</h1>
 			</div>
 

@@ -4,6 +4,8 @@ define("PAGE_TITLE", "News");
 define("NAVIGATION_PAGE", "news");
 define("NAVIGATION_PAGE_NEWS", "news");
 
+require_once "includes/utils/session.php";
+
 $com = file_get_contents("https://scuola.gioiacca9.tk/api/news/");
 $com = json_decode($com, true);
 
