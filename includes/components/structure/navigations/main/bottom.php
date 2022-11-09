@@ -1,33 +1,33 @@
 <div class="min-w-full mx-auto fixed bottom-0">
-	<div class="container max-w-3xl bg-base-200 mx-auto pb-3">
+	<div class="container max-w-3xl bg-base-200 mx-auto pb-2">
 		<div class="flex">
-			<a href="/" class="flex flex-col flex-grow py-3 px-4">
+			<a href="/" class="flex flex-col flex-grow py-3 px-3">
 				<div class="rounded-full <?=NAVIGATION_PAGE == "home" ? "bg-base-100" : "bg-transparent"?> mx-auto px-5 pt-1 align-middle">
-					<ion-icon name="home<?=NAVIGATION_PAGE == "home" ? "" : "-outline"?>" class=""></ion-icon>
+				<span class="text-lg material-symbols-rounded <?=NAVIGATION_PAGE == "home" ? "icon-fill" : ""?>">home</span>
 				</div>
 				<span class="mx-auto text-xs font-bold mt-0.5">
 					Home
 				</span>
 			</a>
-			<a href="/news/" class="flex flex-col flex-grow py-3 px-4">
+			<a href="/news/" class="flex flex-col flex-grow py-3 px-2">
 				<div class="rounded-full <?=NAVIGATION_PAGE == "news" ? "bg-base-100" : "bg-transparent"?> mx-auto px-5 pt-1 align-middle">
-					<ion-icon name="newspaper<?=NAVIGATION_PAGE == "news" ? "" : "-outline"?>"></ion-icon>
+					<span class="text-lg material-symbols-rounded <?=NAVIGATION_PAGE == "news" ? "icon-fill" : ""?>">newspaper</span>
 				</div>
 				<span class="mx-auto text-xs font-semibold mt-0.5">
 					News
 				</span>
 			</a>
-			<a href="#" class="flex flex-col flex-grow py-3 px-4">
-				<div class="rounded-full <?=NAVIGATION_PAGE == "schedule" ? "bg-base-100" : "bg-transparent"?> mx-auto px-5 pt-1 align-middle">
-					<ion-icon name="calendar<?=NAVIGATION_PAGE == "schedule" ? "" : "-outline"?>"></ion-icon>
+			<a href="/feedbacks/" class="flex flex-col flex-grow py-3 px-2">
+				<div class="rounded-full <?=NAVIGATION_PAGE == "feedback" ? "bg-base-100" : "bg-transparent"?> mx-auto px-5 pt-1 align-middle">
+					<span class="text-lg material-symbols-rounded <?=NAVIGATION_PAGE == "feedback" ? "icon-fill" : ""?>">campaign</span>
 				</div>
 				<span class="mx-auto text-xs font-semibold mt-0.5">
-					Orario
+					FeedBack
 				</span>
 			</a>
-			<a href="#" class="flex flex-col flex-grow py-3 px-4">
+			<a href="/" class="flex flex-col flex-grow py-3 px-2">
 				<div class="rounded-full <?=NAVIGATION_PAGE == "services" ? "bg-base-100" : "bg-transparent"?> mx-auto px-5 pt-1 align-middle">
-					<ion-icon name="apps<?=NAVIGATION_PAGE == "services" ? "" : "-outline"?>"></ion-icon>
+				<span class="text-lg material-symbols-rounded <?=NAVIGATION_PAGE == "services" ? "icon-fill" : ""?>">apps</span>
 				</div>
 				<span class="mx-auto text-xs font-semibold mt-0.5">
 					Servizi

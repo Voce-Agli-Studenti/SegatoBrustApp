@@ -1,10 +1,12 @@
-<div class="custom-tabs min-w-full mx-auto sticky top-0 z-50 bg-base-100">
+<div class="custom-tabs min-w-full mx-auto sticky top-0 z-40 bg-base-100">
 	<div class="container max-w-3xl mx-auto">
 		<div class="">
 			<div class="flex">
 				<a href="/news/famiglia/" class="flex flex-col flex-grow pt-1 px-4">
 					<div class="rounded-full mx-auto px-5 pt-1 align-middle">
-						<ion-icon name="people<?=NAVIGATION_PAGE_NEWS == "famiglia" ? "" : "-outline";?>"></ion-icon>
+						<span class="text-lg material-symbols-rounded <?=NAVIGATION_PAGE_NEWS == "famiglia" ? "icon-filled" : "";?>">
+							family_restroom
+						</span>
 					</div>
 					<span class="mx-auto text-xs font-bold mt-0.5">
 						Famiglia
@@ -15,7 +17,9 @@
 				</a>
 				<a href="/news/" class="flex flex-col flex-grow pt-1 px-4">
 					<div class="rounded-full mx-auto px-5 pt-1 align-middle">
-						<ion-icon name="newspaper<?=NAVIGATION_PAGE_NEWS == "news" ? "" : "-outline";?>"></ion-icon>
+						<span class="text-lg material-symbols-rounded <?=NAVIGATION_PAGE_NEWS == "news" ? "icon-filled" : "";?>">
+							newspaper
+						</span>
 					</div>
 					<span class="mx-auto text-xs font-semibold mt-0.5">
 						News
@@ -26,7 +30,9 @@
 				</a>
 				<a href="/news/personale/" class="flex flex-col flex-grow pt-1 px-4">
 					<div class="rounded-full mx-auto px-5 pt-1 align-middle">
-						<ion-icon name="school<?=NAVIGATION_PAGE_NEWS == "personale" ? "" : "-outline";?>"></ion-icon>
+						<span class="text-lg material-symbols-rounded <?=NAVIGATION_PAGE_NEWS == "personale" ? "icon-filled" : "";?>">
+							school
+						</span>
 					</div>
 					<span class="mx-auto text-xs font-semibold mt-0.5">
 						Personale
