@@ -9,8 +9,14 @@
 			<ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
 				<li>
 					<a href="/settings/" class="">
-						<i class="bi bi-gear-fill me-1"></i>
+					<span class="material-symbols-rounded">settings</span>
 						Impostazioni
+					</a>
+				</li>
+				<li>
+					<a href="/logout/" class="">
+					<span class="material-symbols-rounded">logout</span>
+						Esci
 					</a>
 				</li>
 			</ul>
