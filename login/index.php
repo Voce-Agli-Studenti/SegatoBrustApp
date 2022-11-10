@@ -24,7 +24,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 
 	if ($pass) {
 
-		$username = $_POST['username'];
+		$username = trim($_POST['username']);
 		$password = $_POST['password'];
 		$moodle_login = moodle_login($username, $password);
 		
@@ -86,7 +86,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 								<label class="label">
 									<span class="label-text">Username di Moodle</span>
 								</label>
-								<input type="text" placeholder="Username" name="username" class="input input-bordered w-full" />
+								<input type="text" placeholder="Username" name="username" class="input input-bordered w-full" autofocus/>
 								<label class="label">
 									<span class="label-text-alt text-error"><?=$username_error ?? "";?></span>
 								</label>
