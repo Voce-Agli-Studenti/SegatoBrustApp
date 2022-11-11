@@ -25,7 +25,7 @@
 					FeedBack
 				</span>
 			</a>
-			<a href="/" class="flex flex-col flex-grow py-3 px-2">
+			<a href="/services/" class="flex flex-col flex-grow py-3 px-2">
 				<div class="rounded-full <?=NAVIGATION_PAGE == "services" ? "bg-base-100" : "bg-transparent"?> mx-auto px-5 pt-1 align-middle">
 				<span class="text-lg material-symbols-rounded <?=NAVIGATION_PAGE == "services" ? "icon-fill" : ""?>">apps</span>
 				</div>
