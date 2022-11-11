@@ -28,6 +28,20 @@ html.is-leaving .transition-slide-down {
   overflow: hidden;
 }
 
+.truncate-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+.truncate-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
 
 .material-symbols-rounded {
   font-variation-settings:

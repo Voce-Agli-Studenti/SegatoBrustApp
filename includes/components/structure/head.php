@@ -7,7 +7,8 @@
 <link href="https://cdn.jsdelivr.net/npm/daisyui@2.33.0/dist/full.css" rel="stylesheet" type="text/css" />
 <script src="/assets/js/tailwindcss.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-<link rel="stylesheet" href="/assets/css/style.css?v=4.4">
+<link rel="stylesheet" href="/assets/css/style.min.css">
+<link rel="stylesheet" href="/assets/css/style.css">
 
 <meta property="og:title" content="<?=defined("PAGE_TITLE") ? htmlspecialchars(PAGE_TITLE) : "";?>" />
 <meta property="og:site_name" content="SegatoBrust App" />
