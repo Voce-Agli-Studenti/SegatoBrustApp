@@ -18,7 +18,7 @@ $com = json_decode($com, true);
 	<?php include "includes/components/structure/head.php";?>
 </head>
 
-<body class="select-none">
+<body class="select-none h-screen bg-base-200">
 
 	<main id="swup" class="">
 

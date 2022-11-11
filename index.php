@@ -4,6 +4,7 @@ define("PAGE_TITLE", "SegatoBrusto App");
 define("NAVIGATION_PAGE", "home");
 
 require_once "includes/utils/session.php";
+require_once "includes/components/templates/template.php";
 
 ?>
 
@@ -14,7 +15,7 @@ require_once "includes/utils/session.php";
 	<?php include "includes/components/structure/head.php";?>
 </head>
 
-<body class="select-none">
+<body class="select-none h-screen bg-base-200">
 
 	<main id="swup" class="">
 
@@ -29,6 +30,10 @@ require_once "includes/utils/session.php";
 					<span class="text-accent">Accedi</span> a SegatoBrust App
 					<?php endif;?>
 				</h1>
+
+				<?php template_HTML("calendars/class_schedule")?>
+
+				<button class="btn" id="send-push-button"></button>
 			</div>
 
 		</div>
