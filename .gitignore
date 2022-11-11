@@ -1,2 +1,4 @@
 .vscode/
 includes/utils/database/database_connection.php
+node_modules/
+vendor/
