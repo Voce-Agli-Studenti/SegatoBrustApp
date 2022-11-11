@@ -31,31 +31,23 @@ self.addEventListener('activate', event => {
 	// SW activated
 });
 
-/* self.addEventListener('fetch', event => {
+self.addEventListener('push', function (event) {
+	if (!(self.Notification && self.Notification.permission === 'granted')) {
+		return;
+	}
 
+	
+	const sendNotification = data => {
+		data = JSON.parse(data);
+		console.log(data);
+		return self.registration.showNotification(data.title, data.options);
+	};
 
-	event.respondWith(
-		fetch(event.request).catch(function () {
-			return caches.match(event.request);
-		}),
-	);
-
-
-
-	event.respondWith(
-		caches.match(event.request).then(cacheRes => {
-			return cacheRes || fetch(event.request).then(fetchRes => {
-				return caches.open(dynamicCache).then(cache => {
-					cache.put(event.request.url, fetchRes.clone())
-					return fetchRes;
-				});
-			});
-		}).catch(() => {
-			return caches.match("/offline/")
-		})
-	);
-}); */
-
+	if (event.data) {
+		const message = event.data.text();
+		event.waitUntil(sendNotification(message));
+	}
+});
 
 self.addEventListener('fetch', (event) => {
 	console.log(event.request);
@@ -101,7 +93,7 @@ self.addEventListener('fetch', (event) => {
 						return cachedResponse;
 					}
 					// If the network is unavailable, get
-					return cache.match("/offline/");					
+					return cache.match("/offline/");
 				});
 			});
 		}));
