@@ -38,4 +38,7 @@ if (isset($_SESSION['user_id'])) {
 	define("USER_IS_LOGGED", false);
 }
 
-error_log(session_id() . " - " . json_encode($_SESSION) . " - " . $_SERVER['REQUEST_URI']);
+
+if (!USER_IS_LOGGED && defined("LOGIN_REQUIRED") && LOGIN_REQUIRED) {
+	redirect("/login/");
+}
