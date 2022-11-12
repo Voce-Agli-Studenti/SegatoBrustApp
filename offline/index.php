@@ -19,10 +19,16 @@ require_once "includes/utils/session.php";
 	<main id="swup" class="">
 
 		<div class="transition-slide-down">
-			<div class="container max-w-3xl mx-auto py-6 px-6">
-				<h1 class="text-4xl font-bold text-base-content">
-					Nessuna connessione
-				</h1>
+			<div class="container max-w-3xl mx-auto pb-24">
+
+				<!--Default padded container-->
+				<div class="px-4 py-4">
+					<h1 class="text-xl font-bold text-base-content">
+						Nessuna connessione
+					</h1>
+				</div>
+				<!--End default padded container-->
+
 			</div>
 
 		</div>

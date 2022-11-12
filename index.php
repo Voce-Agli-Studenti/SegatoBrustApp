@@ -22,19 +22,35 @@ require_once "includes/components/templates/template.php";
 		<?php include "includes/components/structure/navigations/main/top.php";?>
 
 		<div class="transition-slide-down">
-			<div class="container max-w-3xl mx-auto py-6 px-6">
-				<h1 class="text-4xl font-bold text-base-content">
-					<?php if (USER_IS_LOGGED): ?>
-					<span class="text-accent">Ciao</span> <?=htmlspecialchars(USER['name'])?>
-					<?php else:?>
-					<span class="text-accent">Accedi</span> a SegatoBrust App
-					<?php endif;?>
-				</h1>
 
-				<?php template_HTML("calendars/class_schedule")?>
-
-				<button class="btn" id="send-push-button"></button>
+			<!---Quick action button-->
+			<div class="container max-w-3xl mx-auto px-6">
+				<a href="#"
+					class="btn btn-square rounded-full fixed z-90 bottom-24 right-4 flex justify-center items-center text-accent btn-quick-action">
+					<span class="material-symbols-rounded">comment</span>
+				</a>
 			</div>
+			<!---End action button-->
+
+			<div class="container max-w-3xl mx-auto pb-24">
+
+				<div class="px-4 py-4">
+					<h1 class="text-4xl font-bold text-base-content">
+						<?php if (USER_IS_LOGGED): ?>
+						<span class="text-accent">Ciao</span> <?=htmlspecialchars(USER['name'])?>
+						<?php else:?>
+						<span class="text-accent">Accedi</span> a SegatoBrust App
+						<?php endif;?>
+					</h1>
+
+					<?php template_HTML("calendars/class_schedule")?>
+
+					<button class="btn" id="send-push-button"></button>
+				</div>
+
+			</div>
+
+
 
 		</div>
 

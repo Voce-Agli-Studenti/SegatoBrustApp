@@ -1,8 +1,8 @@
 <?php
 set_include_path($_SERVER['DOCUMENT_ROOT']);
 //define("LOGIN_REQUIRED", true);
-define("PAGE_TITLE", "Servizi");
-define("NAVIGATION_PAGE", "services");
+define("PAGE_TITLE", "Impostazioni");
+define("NAVIGATION_PAGE", "settings");
 
 require_once "includes/utils/session.php";
 require_once "includes/utils/commons.php";
@@ -26,9 +26,12 @@ require_once "includes/utils/commons.php";
 
 			<div class="container max-w-3xl mx-auto pb-24">
 				<div class="px-4 py-4">
-					<h1 class="text-4xl font-bold text-base-content">
-						<span class="text-accent">In Costruzione</span>
+					<h1 class="text-xl font-semibold text-base-content mb-2">
+						Notifiche
 					</h1>
+					<button class="btn normal-case" id="push-subscription-button">
+						Abilita notifiche
+					</button>
 				</div>
 			</div>
 

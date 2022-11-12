@@ -14,12 +14,6 @@
 					</a>
 				</li>
 				<li>
-					<button class="" id="push-subscription-button">
-					<span class="material-symbols-rounded">settings</span>
-						Notifiche
-					</button>
-				</li>
-				<li>
 					<a href="/logout/" class="">
 					<span class="material-symbols-rounded">logout</span>
 						Esci
