@@ -3,7 +3,6 @@ set_include_path($_SERVER['DOCUMENT_ROOT']);
 define("PAGE_TITLE", "Accedi");
 define("NAVIGATION_PAGE", "");
 
-
 require_once "includes/utils/session.php";
 require_once "includes/utils/commons.php";
 require_once "includes/utils/moodle_api.php";
@@ -28,7 +27,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 		$username = trim($_POST['username']);
 		$password = $_POST['password'];
 		$moodle_login = moodle_login($username, $password);
-		
+
 		if ($moodle_login) {
 			$user_data = moodle_get_user_info($moodle_login['token'], $username);
 
@@ -52,15 +51,13 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 
 				if (user_exists_by_id($user_id)) {
 					// L'utente è già registrato. Aggiorna le informazioni
-				
-					edit_user($user_id, $user_data['fullname'], $user_data['email'], $user_data['profileimageurl'], $class_id);
+
+					edit_user($user_id, $user_data['fullname'], $user_data['email'], $user_data['profileimageurl'], $class_id, false);
 				} else {
 					// L'utente non è registrato nel DB. Lo registra
-					
-					add_user($user_data['id'], $user_data['fullname'], $user_data['email'], $user_data['profileimageurl'], $class_id);
+
+					add_user($user_data['id'], $user_data['fullname'], $user_data['email'], $user_data['profileimageurl'], $class_id, false);
 				}
-
-
 
 				setcookie("moodle_token", $moodle_login['token'], time() + 60 * 60 * 24 * 365, "/", "", true, false);
 				$_SESSION['user_id'] = $user_id;
@@ -97,7 +94,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 
 				<div class="flex flex-wrap justify-center mt-10">
 					<div class="w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
-						<form action="" method="POST" class="" id="loginForm">
+						<form action="" method="POST" class="" id="submitForm">
 							<input type="hidden" name="action_type" value="login">
 							<div class="form-control w-full">
 								<label class="label">
@@ -134,11 +131,8 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 		</div>
 
 		<?php include "includes/components/structure/navigations/main/bottom.php";?>
-		<script>
-		$("#loginForm").on("submit", () => {
-			$("#submitBtn").addClass("loading btn-disabled");
-		})
-		</script>
+		<?php include "includes/components/structure/scripts/form_submit_loading.php";?>
+		
 	</main>
 
 

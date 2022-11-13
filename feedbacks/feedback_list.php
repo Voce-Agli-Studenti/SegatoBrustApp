@@ -55,7 +55,6 @@ $feedbacks = get_all_feedbacks_full();
 		</div>
 
 		<?php include "includes/components/structure/navigations/main/bottom.php";?>
-		<?php include "includes/components/structure/scripts/votes.php";?>
 	</main>
 
 

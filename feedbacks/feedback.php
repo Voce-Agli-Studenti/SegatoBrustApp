@@ -46,34 +46,43 @@ $feedback = get_feedback_full_by_id($feedback_id)[0];
 			</div>
 
 			<div class="container max-w-3xl mx-auto pb-24">
-				<div class="px-4 py-4 bg-base-100">
-					<div class="flex">
-						<div class="avatar mr-2">
-							<div class="w-8 h-8 rounded-full my-auto">
-								<img
-									src="<?=boolval($feedback['feedbacks.is_anonymous']) ? "/assets/img/icons/user.png" : $feedback['users.avatar_url'];?>"
-									alt="<?=boolval($feedback['feedbacks.is_anonymous']) ? "Utente anonimo" : htmlspecialchars($feedback['users.name']);?>">
+				<div class="bg-base-100">
+					<div class="px-4 py-4">
+						<div class="flex">
+							<div class="avatar mr-2">
+								<div class="w-8 h-8 rounded-full my-auto">
+									<img
+										src="<?=boolval($feedback['feedbacks.is_anonymous']) ? "/assets/img/icons/user.png" : $feedback['users.avatar_url'];?>"
+										alt="<?=boolval($feedback['feedbacks.is_anonymous']) ? "Utente anonimo" : htmlspecialchars($feedback['users.name']);?>">
+								</div>
+							</div>
+							<div class="">
+								<p class="text-sm font-semibold text-gray-800 dark:text-slate-100">
+									<?=boolval($feedback['feedbacks.is_anonymous']) ? "Utente anonimo" : htmlspecialchars($feedback['users.name']);?>
+								</p>
+								<p class="text-xs text-gray-600 dark:text-slate-400">
+									<?=time_elapsed_string($feedback['feedbacks.creation_date']);?></p>
 							</div>
 						</div>
-						<div class="">
-							<p class="text-sm font-semibold text-gray-800 dark:text-slate-100">
-								<?=boolval($feedback['feedbacks.is_anonymous']) ? "Utente anonimo" : htmlspecialchars($feedback['users.name']);?>
+						<div class="mt-4">
+							<h2 class="text-lg mb-3 font-medium text-gray-800 dark:text-slate-100">
+								<?=htmlspecialchars($feedback['feedbacks.title']);?>
+							</h2>
+							<p class="text-sm">
+								<?=htmlspecialchars($feedback['feedbacks.description']);?>
 							</p>
-							<p class="text-xs text-gray-600 dark:text-slate-400">
-								<?=time_elapsed_string($feedback['feedbacks.creation_date']);?></p>
 						</div>
 					</div>
-					<div class="mt-4">
-						<h2 class="text-lg mb-3 font-medium text-gray-800 dark:text-slate-100">
-							<?=htmlspecialchars($feedback['feedbacks.title']);?>
-						</h2>
-						<p class="text-sm">
-							<?=htmlspecialchars($feedback['feedbacks.description']);?>
-						</p>
-					</div>
-					<div class="grid mt-4">
-						<div class="justify-self-end">
-							<?php template_HTML("feedbacks/vote_section", ['feedback_id' => $feedback['feedbacks.feedback_id']])?>
+					<div class="flex justify-between px-4 pb-4">
+						<?php if ($user_can_edit_feedback): ?>
+						<div class="z-20">
+							<a href="/feedbacks/<?=$feedback['feedbacks.feedback_id']?>/edit/" class="align-middle outline-none">
+								<span class="material-symbols-rounded">edit</span>
+							</a>
+						</div>
+						<?php endif;?>
+						<div class="ml-auto">
+							<?php template_HTML("feedbacks/vote_section", ['feedback_id' => $feedback['feedbacks.feedback_id']]);?>
 						</div>
 					</div>
 				</div>
@@ -82,8 +91,6 @@ $feedback = get_feedback_full_by_id($feedback_id)[0];
 		</div>
 
 		<?php include "includes/components/structure/navigations/main/bottom.php";?>
-		
-		<?php include "includes/components/structure/scripts/votes.php";?>
 	</main>
 
 

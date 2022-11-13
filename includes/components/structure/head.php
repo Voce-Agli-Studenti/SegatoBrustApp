@@ -18,4 +18,4 @@
 <meta name="theme-color" content="#00B2A7">
 <link rel="apple-touch-icon" href="/assets/img/icon-512.png">
 
-<script defer src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>

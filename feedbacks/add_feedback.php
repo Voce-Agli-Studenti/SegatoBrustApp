@@ -2,7 +2,8 @@
 set_include_path($_SERVER['DOCUMENT_ROOT']);
 define("PAGE_TITLE", "Nuovo FeedBack");
 define("NAVIGATION_PAGE", "feedback");
-define("LOGIN_REQUIRED", true);
+
+if (!defined("ROUTER_REQUIRED")) {die();}
 
 require_once "includes/utils/session.php";
 require_once "includes/utils/commons.php";
@@ -52,15 +53,17 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "new_feedback") {
 
 			<div class="container max-w-3xl mx-auto pb-24">
 				<div class="px-3 mt-4">
-					<form action="" method="post">
+					<form action="" method="post" id="submitForm">
 						<input type="hidden" name="action_type" value="new_feedback">
 						<div class="form-control w-full">
-							<input type="text" name="title" placeholder="Titolo" class="input input-bordered w-full" autofocus required/>
+							<input type="text" name="title" placeholder="Titolo"
+								class="input input-bordered w-full <?=empty($title_error) ? "" : "input-error";?>" autofocus required />
 							<label class="label">
 								<span class="label-text-alt text-error"><?=$title_error ?? "";?></span>
 							</label>
 						</div>
-						<textarea class="textarea textarea-bordered w-full" name="description" placeholder="Descrizione" rows="10"></textarea>
+						<textarea class="textarea textarea-bordered w-full" name="description" placeholder="Descrizione"
+							rows="10"></textarea>
 						<div class="form-control w-min flex flex-row">
 							<label class="label cursor-pointer">
 								<input type="checkbox" name="is_anonymous" class="checkbox mr-2" />
@@ -79,7 +82,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "new_feedback") {
 							<input type="file" name="media[]" class="file-input file-input-bordered w-full" multiple />
 						</div> -->
 						<div class="flex justify-end">
-							<button type="submit" class="btn btn-accent">
+							<button type="submit" class="btn btn-accent" id="submitBtn">
 								Pubblica
 							</button>
 						</div>
@@ -90,6 +93,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "new_feedback") {
 		</div>
 
 		<?php include "includes/components/structure/navigations/main/bottom.php";?>
+		<?php include "includes/components/structure/scripts/form_submit_loading.php";?>
 	</main>
 
 

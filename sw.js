@@ -3,11 +3,11 @@ const dynamicCache = 'dynamicCache';
 
 const assets = [
 	'/assets/css/style.css',
+	'/assets/css/style.min.css',
 	'/assets/js/pwa.js',
-	'https://unpkg.com/swup@latest/dist/swup.min.js',
+	'/assets/js/app.js',
 	'/assets/js/swup.js',
-	'/assets/js/tailwindcss.js',
-	'https://cdn.jsdelivr.net/npm/daisyui@2.33.0/dist/full.css',
+	'https://unpkg.com/swup@latest/dist/swup.min.js',
 ];
 
 const destinationsToCache = [

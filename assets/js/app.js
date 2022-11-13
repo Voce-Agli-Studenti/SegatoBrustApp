@@ -1,4 +1,3 @@
-<script>
 function castVote(feedback_id, vote) {
 	$.ajax({
 		type: "POST",
@@ -32,4 +31,3 @@ function castVote(feedback_id, vote) {
 		},
 	})
 }
-</script>

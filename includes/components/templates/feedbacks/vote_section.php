@@ -21,32 +21,32 @@ $vote_count = intval($feedback_votes[0]['total']);
 
 <?php if (USER_IS_LOGGED): ?>
 <button class="align-middle outline-none" onclick="castVote('<?=$feedback_id;?>', 1)">
-	<span class="pt-1 pr-1 material-symbols-rounded <?=$user_vote == 1 ? "icon-fill text-success" : "";?>"
+	<span class="material-symbols-rounded <?=$user_vote == 1 ? "icon-fill text-success" : "";?>"
 		id="thbup_<?=$feedback_id;?>">
 		thumb_up
 	</span>
 </button>
-<span class="mx-0" id="thbcn_<?=$feedback_id;?>">
+<span class="mx-1" id="thbcn_<?=$feedback_id;?>">
 	<?=$vote_count;?>
 </span>
 <button class="align-middle outline-none" onclick="castVote('<?=$feedback_id;?>', -1)">
-	<span class="pt-1 pl-1 material-symbols-rounded <?=$user_vote == -1 ? "icon-fill text-error" : "";?>"
+	<span class="material-symbols-rounded <?=$user_vote == -1 ? "icon-fill text-error" : "";?>"
 		id="thbdn_<?=$feedback_id;?>">
 		thumb_down
 	</span>
 </button>
 <?php else: ?>
 <button class="align-middle outline-none tooltip" data-tip="Accedi">
-	<span class="pt-1 pr-1 material-symbols-rounded <?=$user_vote == 1 ? "icon-fill text-success" : "";?>"
+	<span class="material-symbols-rounded <?=$user_vote == 1 ? "icon-fill text-success" : "";?>"
 		id="thbup_<?=$feedback_id;?>">
 		thumb_up
 	</span>
 </button>
-<span class="mx-0" id="thbcn_<?=$feedback_id;?>">
+<span class="mx-1" id="thbcn_<?=$feedback_id;?>">
 	<?=$vote_count;?>
 </span>
 <button class="align-middle outline-none tooltip" data-tip="Accedi">
-	<span class="pt-1 pl-1 material-symbols-rounded <?=$user_vote == -1 ? "icon-fill text-error" : "";?>"
+	<span class="material-symbols-rounded <?=$user_vote == -1 ? "icon-fill text-error" : "";?>"
 		id="thbdn_<?=$feedback_id;?>">
 		thumb_down
 	</span>
