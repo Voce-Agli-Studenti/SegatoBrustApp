@@ -42,10 +42,7 @@ require_once "includes/components/templates/template.php";
 						<span class="text-accent">Accedi</span> a SegatoBrust App
 						<?php endif;?>
 					</h1>
-
-					<?php template_HTML("calendars/class_schedule")?>
-
-					<button class="btn" id="send-push-button"></button>
+					
 				</div>
 
 			</div>
