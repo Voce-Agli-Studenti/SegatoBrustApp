@@ -97,13 +97,14 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 
 				<div class="flex flex-wrap justify-center mt-10">
 					<div class="w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
-						<form action="" method="POST" class="">
+						<form action="" method="POST" class="" id="loginForm">
 							<input type="hidden" name="action_type" value="login">
 							<div class="form-control w-full">
 								<label class="label">
 									<span class="label-text">Username di Moodle</span>
 								</label>
-								<input type="text" placeholder="Username" name="username" class="input input-bordered w-full" autofocus/>
+								<input type="text" placeholder="Username" name="username" class="input input-bordered w-full"
+									autofocus />
 								<label class="label">
 									<span class="label-text-alt text-error"><?=$username_error ?? "";?></span>
 								</label>
@@ -120,7 +121,9 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 							</div>
 
 							<div class="flex justify-end">
-								<button type="submit" class="btn btn-outline btn-accent">ACCEDI</button>
+								<button type="submit" class="btn btn-outline btn-accent" id="submitBtn">
+									ACCEDI
+								</button>
 							</div>
 
 						</form>
@@ -131,6 +134,11 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 		</div>
 
 		<?php include "includes/components/structure/navigations/main/bottom.php";?>
+		<script>
+		$("#loginForm").on("submit", () => {
+			$("#submitBtn").addClass("loading btn-disabled");
+		})
+		</script>
 	</main>
 
 
