@@ -4,9 +4,7 @@
 <title><?=defined("PAGE_TITLE") ? htmlspecialchars(PAGE_TITLE) : "";?></title>
 <meta name="description" content="La nuova app dell'istituto Segato-Brustolon">
 <link rel="manifest" href="/manifest.json" />
-<link href="https://cdn.jsdelivr.net/npm/daisyui@2.33.0/dist/full.css" rel="stylesheet" type="text/css" />
 <script src="/assets/js/tailwindcss.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/assets/css/style.min.css">
 <link rel="stylesheet" href="/assets/css/style.css">
 
