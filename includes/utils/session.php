@@ -12,6 +12,7 @@ session_start();
 setlocale(LC_ALL, "it_IT.UTF-8");
 
 function destroy_session() {
+	setcookie("moodle_token", "", 1, "/", "", true, false);
 	session_unset();
 	session_destroy();
 	header("Location: /");
