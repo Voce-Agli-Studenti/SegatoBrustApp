@@ -6,8 +6,9 @@ define("NAVIGATION_PAGE", "");
 
 require_once "includes/utils/session.php";
 require_once "includes/utils/commons.php";
-require_once "includes/utils/moodle_connections.php";
+require_once "includes/utils/moodle_api.php";
 require_once "includes/utils/database/users.php";
+require_once "includes/utils/database/classes.php";
 
 if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 	$pass = true;
@@ -36,14 +37,30 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 			} else {
 				$user_data = $user_data[0];
 				$user_id = get_user_id($user_data['id']);
+
+				$user_courses = moodle_get_user_courses($moodle_login['token'], $user_data['id']);
+
+				$class_id = null;
+
+				foreach ($user_courses as $course) {
+					if (class_exists_by_moodle_category_id($course['category'])) {
+						// L'utente è iscritto ad un corso che appartiene ad una clase conosciuta
+						$class_id = get_class_by_moodle_category_id($course['category'])[0]['class_id'];
+						break;
+					}
+				}
+
 				if (user_exists_by_id($user_id)) {
 					// L'utente è già registrato. Aggiorna le informazioni
-					edit_user($user_id, $user_data['fullname'], $user_data['email'], $user_data['profileimageurl']);
+				
+					edit_user($user_id, $user_data['fullname'], $user_data['email'], $user_data['profileimageurl'], $class_id);
 				} else {
 					// L'utente non è registrato nel DB. Lo registra
 					
-					add_user($user_data['id'], $user_data['fullname'], $user_data['email'], $user_data['profileimageurl']);
+					add_user($user_data['id'], $user_data['fullname'], $user_data['email'], $user_data['profileimageurl'], $class_id);
 				}
+
+
 
 				setcookie("moodle_token", $moodle_login['token'], time() + 60 * 60 * 24 * 365, "/", "", true, false);
 				$_SESSION['user_id'] = $user_id;

@@ -34,3 +34,17 @@ function moodle_get_user_info($wstoken, $username) {
 	$response = json_decode($response, true);
 	return $response;
 }
+
+
+function moodle_get_user_courses($wstoken, $moodle_user_id) {
+	$data = [
+		"wstoken" => $wstoken,
+		"wsfunction" => "core_enrol_get_users_courses",
+		"moodlewsrestformat" => "json",
+		"userid" => $moodle_user_id,
+	];
+	
+	$response = http_post_request("https://moodle.segatobrustolon.edu.it/webservice/rest/server.php", $data);
+	$response = json_decode($response, true);
+	return $response;
+}

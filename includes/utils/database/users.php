@@ -9,14 +9,15 @@ require_once "includes/utils/database/database_connection.php";
  * @param integer $id ID di Moodle dell'utente
  * @param string $name Nome dell'utente
  * @param string $email Email dell'utente
+ * @param string $class_id ID della classe
  */
-function add_user($id, $name, $email, $avatar_url) {
+function add_user($id, $name, $email, $avatar_url, $class_id) {
 	$pdo = pdo_connection();
 
 	$user_id = hash_hmac("sha256", $id, "user_id");
 
-	$stmt = $pdo->prepare("INSERT INTO users VALUES(:user_id, :name, :email, :avatar_url, 0)");
-	$stmt->execute(['user_id' => $user_id, 'name' => $name, 'email' => $email, 'avatar_url' => $avatar_url]);
+	$stmt = $pdo->prepare("INSERT INTO users VALUES(:user_id, :name, :email, :avatar_url, :class_id, 0)");
+	$stmt->execute(['user_id' => $user_id, 'name' => $name, 'email' => $email, 'avatar_url' => $avatar_url, 'class_id' => $class_id]);
 }
 
 /**
@@ -25,12 +26,13 @@ function add_user($id, $name, $email, $avatar_url) {
  * @param integer $id ID di Moodle dell'utente
  * @param string $name Nome dell'utente
  * @param string $email Email dell'utente
+ * @param string $class_id ID della classe
  */
-function edit_user($user_id, $name, $email, $avatar_url) {
+function edit_user($user_id, $name, $email, $avatar_url, $class_id) {
 	$pdo = pdo_connection();
 
-	$stmt = $pdo->prepare("UPDATE users SET name=:name, email=:email, avatar_url=:avatar_url WHERE user_id=:user_id");
-	$stmt->execute(['name' => $name, 'email' => $email, 'avatar_url' => $avatar_url, 'user_id' => $user_id]);
+	$stmt = $pdo->prepare("UPDATE users SET name=:name, email=:email, avatar_url=:avatar_url, class_id=:class_id WHERE user_id=:user_id");
+	$stmt->execute(['name' => $name, 'email' => $email, 'avatar_url' => $avatar_url, 'class_id' => $class_id, 'user_id' => $user_id]);
 }
 
 /**
