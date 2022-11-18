@@ -36,19 +36,19 @@ $vote_count = intval($feedback_votes[0]['total']);
 	</span>
 </button>
 <?php else: ?>
-<button class="align-middle outline-none tooltip" data-tip="Accedi">
+<a href="/login/" class="h-full align-middle outline-none">
 	<span class="material-symbols-rounded <?=$user_vote == 1 ? "icon-fill text-success" : "";?>"
 		id="thbup_<?=$feedback_id;?>">
 		thumb_up
 	</span>
-</button>
+</a>
 <span class="mx-1" id="thbcn_<?=$feedback_id;?>">
 	<?=$vote_count;?>
 </span>
-<button class="align-middle outline-none tooltip" data-tip="Accedi">
+<a href="/login/" class="h-full align-middle outline-none">
 	<span class="material-symbols-rounded <?=$user_vote == -1 ? "icon-fill text-error" : "";?>"
 		id="thbdn_<?=$feedback_id;?>">
 		thumb_down
 	</span>
-</button>
+</a>
 <?php endif;?>

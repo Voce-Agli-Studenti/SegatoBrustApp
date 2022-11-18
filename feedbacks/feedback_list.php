@@ -19,7 +19,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 	}
 }
 
-$feedbacks = get_all_feedbacks_full();
+$feedbacks = get_feedbacks_full();
 
 ?>
 

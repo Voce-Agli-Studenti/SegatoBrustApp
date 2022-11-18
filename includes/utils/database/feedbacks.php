@@ -103,7 +103,7 @@ function get_feedback_full_by_id($feedback_id) {
  * 
  * @return array Risultato della query
  */
-function get_all_feedbacks_full() {
+function get_feedbacks_full() {
 	$pdo = pdo_connection();
 	$pdo->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES, true);
 

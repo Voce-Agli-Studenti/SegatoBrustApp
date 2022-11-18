@@ -9,19 +9,32 @@ require_once "includes/utils/session.php";
 require_once "includes/utils/commons.php";
 require_once "includes/components/templates/template.php";
 require_once "includes/utils/database/users.php";
-require_once "includes/utils/database/feedback_votes.php";
 require_once "includes/utils/database/feedbacks.php";
+require_once "includes/utils/database/feedback_votes.php";
+require_once "includes/utils/database/feedback_comments.php";
 
-if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
+if (isset($_POST['action_type']) && $_POST['action_type'] == "add_comment") {
 	$pass = true;
 
-	if (!isset($_POST['username']) || empty($_POST['username'])) {
-		$username_error = "L'username è obbligatorio";
+	$comment_text = trim($_POST['comment_text'] ?? "");
+
+	if (empty($comment_text)) {
 		$pass = false;
+	}
+
+	if (!USER_IS_LOGGED) {
+		$pass = false;
+		redirect("/login/");
+	}
+
+	if ($pass) {
+		add_feedback_comment($feedback_id, USER['user_id'], $comment_text);
 	}
 }
 
 $feedback = get_feedback_full_by_id($feedback_id)[0];
+
+$comments = get_feedback_comments_full($feedback_id);
 ?>
 
 <!DOCTYPE html>
@@ -38,12 +51,37 @@ $feedback = get_feedback_full_by_id($feedback_id)[0];
 		<?php include "includes/components/structure/navigations/main/top.php";?>
 
 		<div class="transition-slide-down">
-			<div class="container max-w-3xl mx-auto px-6">
-				<a href="/feedbacks/add/"
+			<?php if (USER_IS_LOGGED): ?>
+			<div class="container max-w-3xl mx-auto px-6 absolute z-50">
+				<!-- The button to open modal -->
+				<label for="my-modal-4"
 					class="btn btn-square rounded-full fixed z-90 bottom-24 right-4 flex justify-center items-center text-accent btn-quick-action">
 					<span class="material-symbols-rounded">comment</span>
-				</a>
+				</label>
+
+				<input type="checkbox" id="my-modal-4" class="modal-toggle" />
+				<label for="my-modal-4" class="modal modal-bottom sm:modal-middle cursor-pointer">
+					<label class="modal-box p-4 relative" for="">
+						<label for="my-modal-4" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+						<h3 class="text-lg font-bold">
+							Commenta
+						</h3>
+						<div class="mt-3">
+							<form action="" method="post">
+								<input type="text" placeholder="Aggiungi un commento" class="input input-bordered w-full"
+									name="comment_text" />
+								<input type="hidden" name="action_type" value="add_comment">
+								<button type="submit" class="btn w-full btn-accent mt-3">
+									Commenta
+								</button>
+							</form>
+						</div>
+					</label>
+				</label>
 			</div>
+			<?php endif?>
+
+
 
 			<div class="container max-w-3xl mx-auto pb-24">
 				<div class="bg-base-100">
@@ -85,6 +123,12 @@ $feedback = get_feedback_full_by_id($feedback_id)[0];
 							<?php template_HTML("feedbacks/vote_section", ['feedback_id' => $feedback['feedbacks.feedback_id']]);?>
 						</div>
 					</div>
+				</div>
+				
+				<div class="">
+					<?php foreach ($comments as $comment): ?>
+						<?php template_HTML("feedbacks/comment", $comment);?>
+					<?php endforeach;?>
 				</div>
 			</div>
 

@@ -2,6 +2,8 @@
 set_include_path($_SERVER['DOCUMENT_ROOT']);
 
 require_once "includes/components/templates/template.php";
+require_once "includes/utils/commons.php";
+
 $feedback = $data;
 ?>
 
