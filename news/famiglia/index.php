@@ -27,9 +27,9 @@ $com = json_decode($com, true);
 		<?php include "includes/components/structure/navigations/pages/news.php";?>
 
 		<div class="transition-slide-down">
-			<div class="container max-w-3xl mx-auto pt-6 pb-24">
+			<div class="container max-w-3xl mx-auto pt-1 pb-24">
 				<?php for ($i = 0; $i < count($com) && $i < 50; $i++):?>
-				<div class="card shadow-lg rounded-none mb-1">
+				<div class="card rounded mb-1 bg-base-100 cursor-pointer">
 					<div class="card-body">
 						<a href="#" class="text-lg font-bold truncate-2">
 							<?=htmlspecialchars($com[$i]['title'])?>
