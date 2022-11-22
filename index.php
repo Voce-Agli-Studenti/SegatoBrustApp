@@ -15,7 +15,7 @@ require_once "includes/components/templates/template.php";
 	<?php include "includes/components/structure/head.php";?>
 </head>
 
-<body class="select-none h-screen bg-base-200">
+<body class="select-none h-screen">
 
 	<main id="swup" class="">
 
@@ -25,10 +25,7 @@ require_once "includes/components/templates/template.php";
 
 			<!---Quick action button-->
 			<div class="container max-w-3xl mx-auto px-6">
-				<a href="#"
-					class="btn btn-square rounded-full fixed z-90 bottom-24 right-4 flex justify-center items-center text-accent btn-quick-action">
-					<span class="material-symbols-rounded">comment</span>
-				</a>
+		
 			</div>
 			<!---End action button-->
 

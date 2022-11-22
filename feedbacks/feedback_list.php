@@ -30,9 +30,9 @@ $feedbacks = get_feedbacks_full();
 	<?php include "includes/components/structure/head.php";?>
 </head>
 
-<body class="select-none h-screen bg-base-200">
+<body class="select-none h-screen">
 
-	<main id="swup" class="">
+	<main id="swup" class="bg-base-200">
 
 		<?php include "includes/components/structure/navigations/main/top.php";?>
 

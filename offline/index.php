@@ -14,9 +14,9 @@ require_once "includes/utils/session.php";
 	<?php include "includes/components/structure/head.php";?>
 </head>
 
-<body class="select-none h-screen bg-base-200">
+<body class="select-none h-screen">
 
-	<main id="swup" class="">
+	<main id="swup" class="bg-base-200">
 
 		<div class="transition-slide-down">
 			<div class="container max-w-3xl mx-auto pb-24">
