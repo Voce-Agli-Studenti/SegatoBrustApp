@@ -49,14 +49,16 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 					}
 				}
 
+				$full_name = ucwords($user_data['fullname']);
+
 				if (user_exists_by_id($user_id)) {
 					// L'utente è già registrato. Aggiorna le informazioni
 
-					edit_user($user_id, $user_data['fullname'], $user_data['email'], $user_data['profileimageurl'], $class_id, false);
+					edit_user($user_id, $full_name, $user_data['email'], $user_data['profileimageurl'], $class_id, false);
 				} else {
 					// L'utente non è registrato nel DB. Lo registra
 
-					add_user($user_data['id'], $user_data['fullname'], $user_data['email'], $user_data['profileimageurl'], $class_id, false);
+					add_user($user_data['id'], $full_name, $user_data['email'], $user_data['profileimageurl'], $class_id, false);
 				}
 
 				setcookie("moodle_token", $moodle_login['token'], time() + 60 * 60 * 24 * 365, "/", "", true, false);
