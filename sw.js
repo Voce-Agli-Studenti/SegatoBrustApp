@@ -3,7 +3,7 @@ const dynamicCache = 'dynamicCache';
 
 const assets = [
 	'/assets/css/style.css',
-	'/assets/css/style.min.css',
+	'/assets/css/style.min.css?v=1.2',
 	'/assets/js/pwa.js',
 	'/assets/js/app.js',
 	'/assets/js/swup.js',

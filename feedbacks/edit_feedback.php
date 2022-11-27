@@ -35,7 +35,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "edit_feedback") {
 	<?php include "includes/components/structure/head.php";?>
 </head>
 
-<body class="select-none h-screen">
+<body class="select-none h-screen bg-base-200">
 
 	<main id="swup" class="bg-base-200">
 

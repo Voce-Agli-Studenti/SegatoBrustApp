@@ -44,7 +44,7 @@ $comments = get_feedback_comments_full($feedback_id);
 	<?php include "includes/components/structure/head.php";?>
 </head>
 
-<body class="select-none h-screen">
+<body class="select-none h-screen bg-base-200">
 
 	<main id="swup" class="bg-base-200">
 
@@ -52,10 +52,10 @@ $comments = get_feedback_comments_full($feedback_id);
 
 		<div class="transition-slide-down">
 			<?php if (USER_IS_LOGGED): ?>
-			<div class="container max-w-3xl mx-auto px-6 absolute z-50">
+			<div class="container max-w-3xl mx-auto px-6 absolute">
 				<!-- The button to open modal -->
 				<label for="my-modal-4"
-					class="btn btn-square rounded-full fixed z-90 bottom-24 right-4 flex justify-center items-center text-accent btn-quick-action">
+					class="btn btn-square rounded-full fixed z-50 bottom-24 right-4 flex justify-center items-center text-accent btn-quick-action">
 					<span class="material-symbols-rounded">comment</span>
 				</label>
 

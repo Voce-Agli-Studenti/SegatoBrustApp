@@ -1,4 +1,4 @@
-<div class="min-w-full mx-auto fixed bottom-0">
+<div class="min-w-full mx-auto fixed bottom-0 z-40">
 	<div class="container max-w-3xl bg-base-200 mx-auto pb-2">
 		<div class="flex">
 			<a href="/" class="flex flex-col flex-grow py-3 px-3">

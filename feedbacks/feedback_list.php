@@ -39,7 +39,7 @@ $feedbacks = get_feedbacks_full();
 		<div class="transition-slide-down">
 			<div class="container max-w-3xl mx-auto px-6">
 				<a href="/feedbacks/add/"
-					class="btn btn-square rounded-full fixed z-90 bottom-24 right-4 flex justify-center items-center text-accent btn-quick-action">
+					class="btn btn-square rounded-full fixed z-50 bottom-24 right-4 flex justify-center items-center text-accent btn-quick-action">
 					<span class="material-symbols-rounded">add</span>
 				</a>
 			</div>
