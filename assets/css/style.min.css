@@ -8241,6 +8241,10 @@ html {
   margin-bottom: 0px;
 }
 
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -8275,6 +8279,10 @@ html {
 
 .mb-2 {
   margin-bottom: 0.5rem;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
 }
 
 .mt-0\.5 {

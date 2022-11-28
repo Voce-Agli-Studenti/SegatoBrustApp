@@ -65,3 +65,20 @@ function add_activity($class_id, $room, $subject, $professors, $day, $hour) {
 
 	return activity_exists_by_id($activity_id) ? $activity_id : false;
 }
+
+/**
+ * Ottiene tutte le attività di un giorno per una classe
+ * 
+ * @param string $class_id ID della classe
+ * @param int $day Giorno
+ * 
+ * @return array Risultati della query
+ */
+function get_day_activities_by_class_id($class_id, $day) {
+	$pdo = pdo_connection();
+
+	$stmt = $pdo->prepare("SELECT * FROM activities WHERE class_id=:class_id AND day=:day
+	ORDER BY hour");
+	$stmt->execute(['class_id' => $class_id, 'day' => $day]);
+	return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+}
