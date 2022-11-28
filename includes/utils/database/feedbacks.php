@@ -109,7 +109,6 @@ function get_feedbacks_full() {
 
 	$stmt = $pdo->prepare("SELECT * FROM feedbacks 
 	INNER JOIN users ON feedbacks.user_id=users.user_id
-	INNER JOIN feedback_votes ON feedback_votes.feedback_id=feedbacks.feedback_id
 	WHERE is_deleted=0");
 	
 	$stmt->execute([]);
