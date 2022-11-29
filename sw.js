@@ -36,7 +36,6 @@ self.addEventListener('push', function (event) {
 		return;
 	}
 
-	
 	const sendNotification = data => {
 		data = JSON.parse(data);
 		console.log(data);
@@ -48,6 +47,20 @@ self.addEventListener('push', function (event) {
 		event.waitUntil(sendNotification(message));
 	}
 });
+
+self.addEventListener('notificationclick', (event) => {
+	event.notification.close();
+
+	if (event.notification.data.action == "open_news") {
+		let news_id = event.notification.data.news_id;
+		const promiseChain = clients.openWindow("https://data.iacca.ml/articleextractor/?disable_proxy&id=" + news_id);
+		event.waitUntil(promiseChain);
+	} else {
+		const promiseChain = clients.openWindow("/news/");
+		event.waitUntil(promiseChain);
+		clients.openWindow("/news/");
+	}
+}, false);
 
 self.addEventListener('fetch', (event) => {
 	console.log(event.request);
