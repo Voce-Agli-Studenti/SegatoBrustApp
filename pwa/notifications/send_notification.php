@@ -51,12 +51,8 @@ for ($i = 0; $i < count($subscriptions); $i++) {
 	$webPush = new WebPush($auth);
 
 	$notification_data = [
-		'title' => $data['title'] ?? "",
-		'options' => [
-			'body' => $data['body'] ?? "",
-			'silent' => $data['silent'] ?? true,
-			'icon' => $data['icon'] ?? "",
-		],
+		'title' => $data['notification']['title'] ?? "",
+		'options' => $data['notification']['options'] ?? []
 	];
 
 	$report = $webPush->sendOneNotification(
