@@ -18,7 +18,7 @@ $com = json_decode($com, true);
 	<?php include "includes/components/structure/head.php";?>
 </head>
 
-<body class="select-none h-screen">
+<body class="select-none h-screen bg-base-200">
 
 	<main id="swup" class="bg-base-200">
 
@@ -29,17 +29,20 @@ $com = json_decode($com, true);
 		<div class="transition-slide-down">
 			<div class="container max-w-3xl mx-auto pt-1 pb-24">
 				<?php for ($i = 0; $i < count($com) && $i < 50; $i++):?>
-				<div class="card rounded mb-1 bg-base-100 cursor-pointer">
-					<div class="card-body">
-						<a href="#" class="text-lg font-bold truncate-2">
-							<?=htmlspecialchars($com[$i]['title'])?>
-						</a>
-						<p class="truncate-2">
-							<?=htmlspecialchars($com[$i]['description'])?>
-						</p>
-						
+				<a href="https://data.iacca.ml/articleextractor/?disable_proxy&id=<?=$com[$i]['comunicato_id']?>"
+					target="_blank">
+					<div class="card rounded mb-1 bg-base-100">
+						<div class="card-body">
+							<span class="text-lg font-bold truncate-2">
+								<?=htmlspecialchars($com[$i]['title']);?>
+							</span>
+							<p class="truncate-2">
+								<?=htmlspecialchars($com[$i]['description']);?>
+							</p>
+
+						</div>
 					</div>
-				</div>
+				</a>
 				<?php endfor;?>
 			</div>
 		</div>
