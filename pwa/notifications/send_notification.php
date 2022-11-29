@@ -1,13 +1,26 @@
 <?php
 set_include_path($_SERVER['DOCUMENT_ROOT']);
-define("LOGIN_REQUIRED", true);
 
-require_once "includes/utils/session.php";
 require_once "includes/utils/database/notification_subscribers.php";
 require "vendor/autoload.php";
 
 use Minishlink\WebPush\Subscription;
 use Minishlink\WebPush\WebPush;
+
+
+$data = json_decode(file_get_contents("php://input"), true);
+
+if (!isset($data['key'])) {
+	die(json_encode(["error" => "missing_key"]));
+}
+
+$key = $data['key'];
+$stored_key = trim(file_get_contents("/var/keys/feedback.segato.iacca.ml/authKey.pem"));
+if ($key !== $stored_key) {
+	die(json_encode(["error" => "invalid_key"]));
+}
+
+unset($data['key']);
 
 $auth = array(
 	'VAPID' => array(
@@ -38,11 +51,11 @@ for ($i = 0; $i < count($subscriptions); $i++) {
 	$webPush = new WebPush($auth);
 
 	$notification_data = [
-		'title' => "Nuovo comunicato",
+		'title' => $data['title'] ?? "",
 		'options' => [
-			'body' => "Testo della notifica",
-			'silent' => false,
-			'icon' => "",
+			'body' => $data['body'] ?? "",
+			'silent' => $data['silent'] ?? true,
+			'icon' => $data['icon'] ?? "",
 		],
 	];
 

@@ -41,6 +41,7 @@ require_once "includes/utils/commons.php";
 	</main>
 
 	<?php include "includes/components/structure/scripts/scripts.php";?>
+	<script src="/assets/js/pages/settings.js"></script>
 
 </body>
 

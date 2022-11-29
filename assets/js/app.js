@@ -6,8 +6,8 @@ function castVote(feedback_id, vote) {
 			feedback_id: feedback_id,
 			vote: vote,
 		},
-		success: function(response) {
-			
+		success: function (response) {
+
 			if (response.ok) {
 				switch (response.result.feedback_votes.user_vote) {
 					case 0:
@@ -22,7 +22,7 @@ function castVote(feedback_id, vote) {
 						$("#thbup_" + feedback_id).removeClass("text-success icon-fill")
 						$("#thbdn_" + feedback_id).addClass("text-error icon-fill")
 						break;
-				
+
 					default:
 						break;
 				}
@@ -31,3 +31,8 @@ function castVote(feedback_id, vote) {
 		},
 	})
 }
+
+
+$(document).ready(() => {
+	push_updateSubscription();
+})
