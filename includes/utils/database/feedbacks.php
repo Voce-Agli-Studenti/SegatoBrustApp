@@ -107,9 +107,13 @@ function get_feedbacks_full() {
 	$pdo = pdo_connection();
 	$pdo->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES, true);
 
-	$stmt = $pdo->prepare("SELECT * FROM feedbacks 
+	$stmt = $pdo->prepare("SELECT 
+	feedbacks.*,
+	users.*,
+	(SELECT SUM(vote) FROM feedback_votes WHERE feedback_id=feedbacks.feedback_id) as votes 
+	FROM feedbacks 
 	INNER JOIN users ON feedbacks.user_id=users.user_id
-	WHERE is_deleted=0");
+	WHERE is_deleted=0 ORDER BY votes DESC, creation_date DESC");
 	
 	$stmt->execute([]);
 	return $stmt->fetchAll(\PDO::FETCH_ASSOC);
