@@ -8398,12 +8398,17 @@ html {
   height: 2rem;
 }
 
-.h-6 {
-  height: 1.5rem;
-}
-
 .h-full {
   height: 100%;
+}
+
+.h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.h-6 {
+  height: 1.5rem;
 }
 
 .max-h-0 {
