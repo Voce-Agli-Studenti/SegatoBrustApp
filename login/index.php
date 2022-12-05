@@ -49,7 +49,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 					}
 				}
 
-				$full_name = ucwords($user_data['fullname']);
+				$full_name = ucname(strtolower($user_data['fullname']));
 
 				if (user_exists_by_id($user_id)) {
 					// L'utente è già registrato. Aggiorna le informazioni

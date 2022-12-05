@@ -54,17 +54,16 @@ function redirect($url) {
 	die();
 }
 
-
 function get_user_id($id) {
 	return hash_hmac("sha256", $id, "user_id");
 }
 
 /**
  * Converte una timestamp in una durata
- * 
+ *
  * @param string $datetime Data da convertire
  * @param boolean $full Se true la durata verrà indicata per esteso
- * 
+ *
  */
 function time_elapsed_string($datetime, $full = false) {
 	$now = new DateTime;
@@ -75,38 +74,53 @@ function time_elapsed_string($datetime, $full = false) {
 	$diff->d -= $diff->w * 7;
 
 	$string = [
-			'y' => 'anno',
-			'm' => 'mese',
-			'w' => 'settimana',
-			'd' => 'giorno',
-			'h' => 'ora',
-			'i' => 'minuto',
-			's' => 'secondo',
+		'y' => 'anno',
+		'm' => 'mese',
+		'w' => 'settimana',
+		'd' => 'giorno',
+		'h' => 'ora',
+		'i' => 'minuto',
+		's' => 'secondo',
 	];
 
-$strings = [
-			'y' => 'anni',
-			'm' => 'mesi',
-			'w' => 'settimane',
-			'd' => 'giorni',
-			'h' => 'ore',
-			'i' => 'minuti',
-			's' => 'secondi',
+	$strings = [
+		'y' => 'anni',
+		'm' => 'mesi',
+		'w' => 'settimane',
+		'd' => 'giorni',
+		'h' => 'ore',
+		'i' => 'minuti',
+		's' => 'secondi',
 	];
 
 	foreach ($string as $k => &$v) {
-			if ($diff->$k) {
-		if ($diff->$k > 1) {
-			$string[$k] = $diff->$k . ' ' . $strings[$k];
-		} else {
-			$v = $diff->$k . ' ' . $v;
-		}
-						
+		if ($diff->$k) {
+			if ($diff->$k > 1) {
+				$string[$k] = $diff->$k . ' ' . $strings[$k];
 			} else {
-					unset($string[$k]);
+				$v = $diff->$k . ' ' . $v;
 			}
+
+		} else {
+			unset($string[$k]);
+		}
 	}
 
-	if (!$full) $string = array_slice($string, 0, 1);
+	if (!$full) {
+		$string = array_slice($string, 0, 1);
+	}
+
 	return $string ? implode(', ', $string) . ' fa' : 'adesso';
+}
+
+function ucname($string) {
+	$string = ucwords(strtolower($string));
+
+	foreach (array('-', '\'') as $delimiter) {
+		if (strpos($string, $delimiter) !== false) {
+			$string = implode($delimiter, array_map('ucfirst', explode($delimiter, $string)));
+		}
+	}
+	
+	return $string;
 }
