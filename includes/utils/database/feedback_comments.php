@@ -14,7 +14,10 @@ function get_feedback_comments_full($feedback_id) {
 	$pdo = pdo_connection();
 	$pdo->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES, true);
 
-	$stmt = $pdo->prepare("SELECT * FROM feedback_comments INNER JOIN users ON feedback_comments.user_id=users.user_id WHERE feedback_comments.feedback_id=:feedback_id");
+	$stmt = $pdo->prepare("SELECT * FROM feedback_comments 
+	INNER JOIN users ON feedback_comments.user_id=users.user_id 
+	WHERE feedback_comments.feedback_id=:feedback_id
+	ORDER BY feedback_comments.creation_date DESC");
 	$stmt->execute(['feedback_id' => $feedback_id]);
 	return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 }
