@@ -4,8 +4,8 @@
 <title><?=defined("PAGE_TITLE") ? htmlspecialchars(PAGE_TITLE) : "";?></title>
 <meta name="description" content="La nuova app dell'istituto Segato-Brustolon">
 <link rel="manifest" href="/manifest.json" />
-<link defer rel="stylesheet" href="/assets/css/style.min.css?v=1.51">
-<link defer rel="stylesheet" href="/assets/css/style.css">
+<link defer rel="stylesheet" href="/assets/css/style.min.css?v=1.52">
+<link defer rel="stylesheet" href="/assets/css/style.css?v=1.0">
 
 <meta property="og:title" content="<?=defined("PAGE_TITLE") ? htmlspecialchars(PAGE_TITLE) : "";?>" />
 <meta property="og:site_name" content="SegatoBrust App" />

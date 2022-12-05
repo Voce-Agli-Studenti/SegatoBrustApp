@@ -12,7 +12,7 @@ $dashboard_messages = get_dashboard_messages();
 <div class="flex overflow-x-scroll pb-10 hide-scroll-bar snap-mandatory snap-x">
 	<div class="flex flex-nowrap">
 		<?php foreach ($dashboard_messages as $dashboard_message): ?>
-		<div class="inline-block px-3 snap-center">
+		<div class="inline-block px-3 first:pl-0 last:pr-0 snap-center">
 			<?php template_HTML("cards/dashboard_message", $dashboard_message);?>
 		</div>
 		<?php endforeach;?>

@@ -58,3 +58,6 @@ html.is-leaving .transition-slide-down {
   'opsz' 24
 }
 
+.card.image-full > figure img {
+  height: auto !important;
+}
