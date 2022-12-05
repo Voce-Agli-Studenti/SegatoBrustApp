@@ -26,9 +26,30 @@ require_once "includes/utils/commons.php";
 
 			<div class="container max-w-3xl mx-auto pb-24">
 				<div class="px-4 py-4">
-					<h1 class="text-4xl font-bold text-base-content">
-						<span class="text-accent">In Costruzione</span>
-					</h1>
+					<h2 class="text-2xl font-semibold text-accent mb-3">
+						Servizi
+					</h2>
+
+					<div class="flex justify-start mb-4">
+						<a href="https://moodle.segatobrustolon.edu.it" class="btn btn-square p-1 mx-1 first:ml-0 last:mr-0" target="_blank">
+							<img src="/assets/img/icons/moodle.png" alt="Moodle">
+						</a>
+					</div>
+
+					<h2 class="text-2xl font-semibold text-accent mb-3">
+						Corsi
+					</h2>
+
+					<div class="flex justify-start mb-4">
+						<a href="/services/pon/" class="btn btn-square p-1 mx-1 first:ml-0 last:mr-0">
+							<img src="/assets/img/icons/pon.png" alt="PON">
+						</a>
+						<a href="https://data.iacca.ml/articleextractor/?disable_proxy&id=fa99fbbfd70c78ca494e051f576fd34da163dadce871bc1ecf4b4f89" class="btn btn-square p-1 mx-1 first:ml-0 last:mr-0" target="_blank">
+							<img src="/assets/img/icons/english.png" alt="Inglese">
+						</a>
+					</div>
+
+
 				</div>
 			</div>
 

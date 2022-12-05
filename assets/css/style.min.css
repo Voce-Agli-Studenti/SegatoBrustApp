@@ -8226,6 +8226,11 @@ html {
   margin-bottom: auto;
 }
 
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .my-3 {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
@@ -8279,6 +8284,10 @@ html {
 
 .mb-2 {
   margin-bottom: 0.5rem;
+}
+
+.mr-1 {
+  margin-right: 0.25rem;
 }
 
 .mt-5 {
@@ -9456,6 +9465,10 @@ html {
   padding: 1rem;
 }
 
+.p-1 {
+  padding: 0.25rem;
+}
+
 .p-2 {
   padding: 0.5rem;
 }
@@ -9612,6 +9625,11 @@ html {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .text-base {
@@ -10094,8 +10112,16 @@ html {
   z-index: 10;
 }
 
+.first\:ml-0:first-child {
+  margin-left: 0px;
+}
+
 .first\:pl-0:first-child {
   padding-left: 0px;
+}
+
+.last\:mr-0:last-child {
+  margin-right: 0px;
 }
 
 .last\:pr-0:last-child {
