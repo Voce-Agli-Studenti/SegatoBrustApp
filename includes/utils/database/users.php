@@ -36,17 +36,16 @@ function add_user($id, $name, $email, $avatar_url, $class_id, $is_admin) {
  * @param string $email Email dell'utente
  * @param string $class_id ID della classe
  */
-function edit_user($user_id, $name, $email, $avatar_url, $class_id, $is_admin) {
+function edit_user($user_id, $name, $email, $avatar_url, $class_id) {
 	$pdo = pdo_connection();
 
-	$stmt = $pdo->prepare("UPDATE users SET name=:name, email=:email, avatar_url=:avatar_url, class_id=:class_id, is_admin=:is_admin WHERE user_id=:user_id");
+	$stmt = $pdo->prepare("UPDATE users SET name=:name, email=:email, avatar_url=:avatar_url, class_id=:class_id WHERE user_id=:user_id");
 	$stmt->execute([
 		'name' => $name, 
 		'email' => $email, 
 		'avatar_url' => $avatar_url, 
 		'class_id' => $class_id, 
 		'user_id' => $user_id,
-		'is_admin' => intval($is_admin)
 	]);
 }
 
