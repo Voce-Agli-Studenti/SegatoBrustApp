@@ -20,7 +20,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "edit_feedback") {
 	}	
 
 	if ($pass) {
-		edit_feedback($feedback_id, $feedback['title'], $description, $is_anonymous);
+		edit_feedback($feedback_id, $feedback['title'], $description, $is_anonymous, false);
 		
 		redirect("/feedbacks/" . $feedback_id);
 	}

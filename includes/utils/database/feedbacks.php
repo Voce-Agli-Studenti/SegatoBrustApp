@@ -24,7 +24,7 @@ function add_feedback($user_id, $title, $description, $is_anonymous) {
 		:title,
 		:description,
 		:is_anonymous,
-		CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0
+		CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0, 0
 		)");
 
 	$stmt->execute([
@@ -45,13 +45,15 @@ function add_feedback($user_id, $title, $description, $is_anonymous) {
  * @param string $title Titolo del feedback
  * @param string $description Descrizione del feedback
  * @param string $is_anonymous Indica se il feedback è anonimo
+ * @param string $is_anonymous Indica se il feedback è completato
  */
-function edit_feedback($feedback_id, $title, $description, $is_anonymous) {
+function edit_feedback($feedback_id, $title, $description, $is_anonymous, $is_completed) {
 	$pdo = pdo_connection();
 
 	$stmt = $pdo->prepare("UPDATE feedbacks SET 
 		title=:title,
 		description=:description,
+		is_completed=:is_completed,
 		is_anonymous=:is_anonymous WHERE feedback_id=:feedback_id");
 
 	$stmt->execute([
@@ -59,6 +61,7 @@ function edit_feedback($feedback_id, $title, $description, $is_anonymous) {
 		'title' => $title,
 		'description' => $description,
 		'is_anonymous' => intval($is_anonymous),
+		'is_completed' => intval($is_completed),
 	]);
 }
 
@@ -113,7 +116,7 @@ function get_feedbacks_full() {
 	(SELECT SUM(vote) FROM feedback_votes WHERE feedback_id=feedbacks.feedback_id) as votes 
 	FROM feedbacks 
 	INNER JOIN users ON feedbacks.user_id=users.user_id
-	WHERE is_deleted=0 ORDER BY votes DESC, creation_date DESC");
+	WHERE is_deleted=0 AND is_completed=0 ORDER BY votes DESC, creation_date DESC");
 	
 	$stmt->execute([]);
 	return $stmt->fetchAll(\PDO::FETCH_ASSOC);
