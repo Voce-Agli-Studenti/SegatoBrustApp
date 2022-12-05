@@ -8398,17 +8398,20 @@ html {
   height: 2rem;
 }
 
-.h-full {
-  height: 100%;
+.h-32 {
+  height: 8rem;
 }
 
-.h-fit {
-  height: -moz-fit-content;
-  height: fit-content;
+.h-auto {
+  height: auto;
 }
 
 .h-6 {
   height: 1.5rem;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .max-h-0 {
@@ -8426,6 +8429,10 @@ html {
 
 .w-8 {
   width: 2rem;
+}
+
+.w-64 {
+  width: 16rem;
 }
 
 .w-6 {
@@ -9514,6 +9521,10 @@ html {
   padding-top: 0.25rem;
 }
 
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
+
 .pb-2 {
   padding-bottom: 0.5rem;
 }
@@ -9924,6 +9935,12 @@ html {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1) !important;
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color) !important;
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+}
+
+.shadow-md {
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .outline-none {

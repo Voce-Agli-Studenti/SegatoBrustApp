@@ -32,20 +32,21 @@ require_once "includes/components/templates/template.php";
 			<div class="container max-w-3xl mx-auto pb-24">
 
 				<div class="px-4 py-4">
+					<?php template_HTML("sections/dashboard_messages");?>
+
 					<h1 class="text-4xl font-bold text-base-content mb-4">
 						<?php if (USER_IS_LOGGED): ?>
-						<!-- <span class="text-accent">Ciao</span> <?=htmlspecialchars(USER['name'])?> -->
-						<?php else:?>
+						<!-- <span class="text-accent">Ciao</span> <?=htmlspecialchars(USER['name']);?> -->
+						<?php else: ?>
 						<span class="text-accent">Accedi</span> a SegatoBrust App
 						<?php endif;?>
 					</h1>
 
 					<?php if (USER_IS_LOGGED): ?>
-					<h4 class="text-lg font-semibold">
-						Orario di oggi
-					</h4>
-					<?php template_HTML("calendars/class_schedule")?>
+					<?php template_HTML("calendars/class_schedule");?>
+
 					<?php endif;?>
+
 				</div>
 
 			</div>
