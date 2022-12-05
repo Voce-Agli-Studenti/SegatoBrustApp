@@ -23,7 +23,7 @@ $comment = $data;
 						<?=htmlspecialchars($comment['users.name']);?>
 					</p>
 					<p class="text-xs text-gray-600 dark:text-slate-400">
-						<?=time_elapsed_string($comment['feedbacks.creation_date']);?></p>
+						<?=time_elapsed_string($comment['feedback_comments.creation_date']);?></p>
 				</div>
 			</div>
 		</div>
