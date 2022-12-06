@@ -6,6 +6,30 @@ define("NAVIGATION_PAGE", "services");
 
 require_once "includes/utils/session.php";
 require_once "includes/utils/commons.php";
+require_once "includes/utils/moodle_api.php";
+
+if (USER_IS_LOGGED) {
+	$wstoken = $_COOKIE['moodle_token'];
+	$private_token = $_COOKIE['moodle_token'];
+
+	$user_data = moodle_get_site_info($wstoken);
+	if (isset($user_data['userid'])) {
+		
+		$autologin_data = moodle_autologin($wstoken, $private_token);
+		
+		if (isset($autologin_data['key'])) {
+			
+			$query = [
+				'userid' => $user_data['userid'],
+				'key' => $autologin_data['key'],
+			];
+
+			$moodle_url = $autologin_data['autologinurl'] . "?" . http_build_query($query);
+		}
+	}
+}
+
+$moodle_url = "https://moodle.segatobrustolon.edu.it/my/";
 
 ?>
 <!DOCTYPE html>
@@ -31,7 +55,7 @@ require_once "includes/utils/commons.php";
 					</h2>
 
 					<div class="flex justify-start mb-4">
-						<a href="https://moodle.segatobrustolon.edu.it" class="btn btn-square p-1 mx-1 first:ml-0 last:mr-0" target="_blank">
+						<a href="<?=$moodle_url?>" class="btn btn-square p-1 mx-1 first:ml-0 last:mr-0" target="_blank">
 							<img src="/assets/img/icons/moodle.png" alt="Moodle">
 						</a>
 					</div>
@@ -41,8 +65,8 @@ require_once "includes/utils/commons.php";
 					</h2>
 
 					<div class="flex justify-start mb-4">
-						<a href="/services/pon/" class="btn btn-square p-1 mx-1 first:ml-0 last:mr-0">
-							<img src="/assets/img/icons/pon.png" alt="PON">
+						<a href="/services/courses/math/" class="btn btn-square p-1 mx-1 first:ml-0 last:mr-0">
+							<img src="/assets/img/icons/math.png" alt="Corsi di matematica">
 						</a>
 						<a href="https://data.iacca.ml/articleextractor/?disable_proxy&id=fa99fbbfd70c78ca494e051f576fd34da163dadce871bc1ecf4b4f89" class="btn btn-square p-1 mx-1 first:ml-0 last:mr-0" target="_blank">
 							<img src="/assets/img/icons/english.png" alt="Inglese">

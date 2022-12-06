@@ -7,20 +7,22 @@ require_once "includes/utils/database/database_connection.php";
  * Aggiunge un nuovo utente
  *
  * @param integer $id ID di Moodle dell'utente
- * @param string $name Nome dell'utente
+ * @param string $first_name Nome dell'utente
+ * @param string $last_name Cognome dell'utente
  * @param string $email Email dell'utente
  * @param string $class_id ID della classe
  * @param boolean $is_admin Indica se l'utente è admin o no
  */
-function add_user($id, $name, $email, $avatar_url, $class_id, $is_admin) {
+function add_user($id, $first_name, $last_name, $email, $avatar_url, $class_id, $is_admin) {
 	$pdo = pdo_connection();
 
 	$user_id = hash_hmac("sha256", $id, "user_id");
 
-	$stmt = $pdo->prepare("INSERT INTO users VALUES(:user_id, :name, :email, :avatar_url, :class_id, :is_admin, 0)");
+	$stmt = $pdo->prepare("INSERT INTO users VALUES(:user_id, :first_name, :last_name, :email, :avatar_url, :class_id, :is_admin, 0)");
 	$stmt->execute([
 		'user_id' => $user_id,
-		'name' => $name,
+		'first_name' => $first_name, 
+		'last_name' => $last_name, 
 		'email' => $email,
 		'avatar_url' => $avatar_url,
 		'class_id' => $class_id,
@@ -32,16 +34,18 @@ function add_user($id, $name, $email, $avatar_url, $class_id, $is_admin) {
  * Modifica un utente
  *
  * @param integer $id ID di Moodle dell'utente
- * @param string $name Nome dell'utente
+ * @param string $first_name Nome dell'utente
+ * @param string $last_name Cognome dell'utente
  * @param string $email Email dell'utente
  * @param string $class_id ID della classe
  */
-function edit_user($user_id, $name, $email, $avatar_url, $class_id) {
+function edit_user($user_id, $first_name, $last_name, $email, $avatar_url, $class_id) {
 	$pdo = pdo_connection();
 
-	$stmt = $pdo->prepare("UPDATE users SET name=:name, email=:email, avatar_url=:avatar_url, class_id=:class_id WHERE user_id=:user_id");
+	$stmt = $pdo->prepare("UPDATE users SET first_name=:first_name, last_name=:last_name, email=:email, avatar_url=:avatar_url, class_id=:class_id WHERE user_id=:user_id");
 	$stmt->execute([
-		'name' => $name, 
+		'first_name' => $first_name, 
+		'last_name' => $last_name, 
 		'email' => $email, 
 		'avatar_url' => $avatar_url, 
 		'class_id' => $class_id, 

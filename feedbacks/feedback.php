@@ -91,12 +91,12 @@ $comments = get_feedback_comments_full($feedback_id);
 								<div class="w-8 h-8 rounded-full my-auto">
 									<img
 										src="<?=boolval($feedback['feedbacks.is_anonymous']) ? "/assets/img/icons/user.png" : $feedback['users.avatar_url'];?>"
-										alt="<?=boolval($feedback['feedbacks.is_anonymous']) ? "Utente anonimo" : htmlspecialchars($feedback['users.name']);?>">
+										alt="<?=boolval($feedback['feedbacks.is_anonymous']) ? "Utente anonimo" : htmlspecialchars($feedback['users.first_name'] . " " . $feedback['users.last_name']);?>">
 								</div>
 							</div>
 							<div class="">
 								<p class="text-sm font-semibold text-gray-800 dark:text-slate-100">
-									<?=boolval($feedback['feedbacks.is_anonymous']) ? "Utente anonimo" : htmlspecialchars($feedback['users.name']);?>
+									<?=boolval($feedback['feedbacks.is_anonymous']) ? "Utente anonimo" : htmlspecialchars($feedback['users.first_name'] . " " . $feedback['users.last_name']);?>
 								</p>
 								<p class="text-xs text-gray-600 dark:text-slate-400">
 									<?=time_elapsed_string($feedback['feedbacks.creation_date']);?></p>

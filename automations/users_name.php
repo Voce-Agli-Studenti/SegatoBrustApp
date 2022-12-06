@@ -12,5 +12,5 @@ $stmt->execute([]);
 $users = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
 for ($i=0; $i < count($users); $i++) { 
-	edit_user($users[$i]['user_id'], ucname(strtolower($users[$i]['name'])), $users[$i]['email'], $users[$i]['avatar_url'], $users[$i]['class_id']);
+	edit_user($users[$i]['user_id'], ucname(strtolower($users[$i]['first_name'])), ucname(strtolower($users[$i]['last_name'])), $users[$i]['email'], $users[$i]['avatar_url'], $users[$i]['class_id']);
 }

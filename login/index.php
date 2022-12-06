@@ -30,10 +30,12 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 
 		if ($moodle_login) {
 			$user_data = moodle_get_user_info($moodle_login['token'], $username);
-
+			
 			if (empty($user_data)) {
 				$password_error = "Nome utente o password errati";
 			} else {
+				$site_data = moodle_get_site_info($moodle_login['token']);
+				
 				$user_data = $user_data[0];
 				$user_id = get_user_id($user_data['id']);
 
@@ -49,19 +51,22 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 					}
 				}
 
-				$full_name = ucname(strtolower($user_data['fullname']));
+				// Converte il case dei nomi
+				$first_name = ucname(strtolower($site_data['firstname']));
+				$last_name = ucname(strtolower($site_data['lastname']));
 
 				if (user_exists_by_id($user_id)) {
 					// L'utente è già registrato. Aggiorna le informazioni
 
-					edit_user($user_id, $full_name, $user_data['email'], $user_data['profileimageurl'], $class_id, false);
+					edit_user($user_id, $first_name, $last_name, $user_data['email'], $user_data['profileimageurl'], $class_id, false);
 				} else {
 					// L'utente non è registrato nel DB. Lo registra
 
-					add_user($user_data['id'], $full_name, $user_data['email'], $user_data['profileimageurl'], $class_id, false);
+					add_user($user_data['id'], $first_name, $last_name, $user_data['email'], $user_data['profileimageurl'], $class_id, false);
 				}
 
-				setcookie("moodle_token", $moodle_login['token'], time() + 60 * 60 * 24 * 365, "/", "", true, false);
+				setcookie("moodle_token", $moodle_login['token'], time() + 60 * 60 * 24 * 7 * 12, "/", "", true, false);
+				setcookie("moodle_private_token", $moodle_login['privatetoken'], time() + 60 * 60 * 24 * 7 * 12, "/", "", true, false);
 				$_SESSION['user_id'] = $user_id;
 				redirect("/");
 			}

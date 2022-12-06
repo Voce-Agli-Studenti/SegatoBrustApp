@@ -10,24 +10,49 @@ function moodle_login($username, $password) {
 	
 	$response = http_post_request("https://moodle.segatobrustolon.edu.it/login/token.php", $data);
 	$response = json_decode($response, true);
-
+	
 	if (isset($response['errorcode']) && $response['errorcode'] == "invalidlogin") {
 		return false;
 	}
-
+	
 	if (isset($response['token'])) {
 		return $response;
 	}
 }
 
-function moodle_get_user_info($wstoken, $username) {
+function moodle_autologin($wstoken, $privatetoken) {
+	$data = [
+		"wstoken" => $wstoken,
+		"wsfunction" => "tool_mobile_get_autologin_key",
+		"moodlewsrestformat" => "json",
+		"privatetoken" => $wstoken
+	];
 	
+	$response = http_post_request("https://moodle.segatobrustolon.edu.it/webservice/rest/server.php", $data);
+	$response = json_decode($response, true);
+
+	return $response;
+}
+
+function moodle_get_user_info($wstoken, $username) {
 	$data = [
 		"wstoken" => $wstoken,
 		"wsfunction" => "core_user_get_users_by_field",
 		"moodlewsrestformat" => "json",
 		"field" => "username",
 		"values[0]" => $username
+	];
+	
+	$response = http_post_request("https://moodle.segatobrustolon.edu.it/webservice/rest/server.php", $data);
+	$response = json_decode($response, true);
+	return $response;
+}
+
+function moodle_get_site_info($wstoken) {
+	$data = [
+		"wstoken" => $wstoken,
+		"wsfunction" => "core_webservice_get_site_info",
+		"moodlewsrestformat" => "json",
 	];
 	
 	$response = http_post_request("https://moodle.segatobrustolon.edu.it/webservice/rest/server.php", $data);

@@ -15,12 +15,12 @@ $comment = $data;
 			<div class="flex">
 				<div class="avatar mr-2">
 					<div class="w-6 h-6 rounded-full my-auto">
-						<img src="<?=$comment['users.avatar_url'];?>" alt="<?=htmlspecialchars($comment['users.name']);?>">
+						<img src="<?=$comment['users.avatar_url'];?>" alt="<?=htmlspecialchars($feedback['users.first_name'] . " " . $feedback['users.last_name']);?>">
 					</div>
 				</div>
 				<div class="">
 					<p class="text-xm font-semibold text-gray-800 dark:text-slate-100">
-						<?=htmlspecialchars($comment['users.name']);?>
+						<?=htmlspecialchars($feedback['users.first_name'] . " " . $feedback['users.last_name']);?>
 					</p>
 					<p class="text-xs text-gray-600 dark:text-slate-400">
 						<?=time_elapsed_string($comment['feedback_comments.creation_date']);?></p>
