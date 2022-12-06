@@ -1,4 +1,4 @@
-<div class="custom-tabs min-w-full mx-auto sticky top-0 z-40 bg-base-100">
+<div class="custom-tabs min-w-full mx-auto sticky top-0 z-30 bg-base-100">
 	<div class="container max-w-3xl mx-auto">
 		<div class="">
 			<div class="flex">
