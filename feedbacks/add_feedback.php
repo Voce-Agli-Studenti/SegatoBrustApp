@@ -13,10 +13,16 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "new_feedback") {
 	$pass = true;
 	$title = $_POST['title'] ?? "";
 	$description = $_POST['description'] ?? "";
+	$category = $_POST['category'] ?? "";
 	$is_anonymous = false;
 
 	if (!isset($title) || empty($title)) {
 		$title_error = "Il titolo è obbligatorio";
+		$pass = false;
+	}
+
+	if (!($category == "app" || $category == "school" || $category == "idea")) {
+		$category_error = "Scegliere una categoria tra quelle nella lista";
 		$pass = false;
 	}
 
@@ -25,7 +31,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "new_feedback") {
 	}	
 
 	if ($pass) {
-		$feedback_id = add_feedback(USER['user_id'], $title, $description, $is_anonymous);
+		$feedback_id = add_feedback(USER['user_id'], $title, $description, $is_anonymous, $category);
 
 		if ($feedback_id) {
 			redirect("/feedbacks/" . $feedback_id);
@@ -63,7 +69,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "new_feedback") {
 							</label>
 						</div>
 						<textarea class="textarea textarea-bordered w-full" name="description" placeholder="Descrizione"
-							rows="10"></textarea>
+						rows="10"></textarea>
 						<div class="form-control w-min flex flex-row">
 							<label class="label cursor-pointer">
 								<input type="checkbox" name="is_anonymous" class="checkbox mr-2" />
@@ -73,6 +79,29 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "new_feedback") {
 								<div class="tooltip tooltip-top h-min" data-tip="Il tuo nome non verrà pubblicato">
 									<span class="material-symbols-rounded">help</span>
 								</div>
+							</label>
+						</div>
+						<div class="form-control mb-4">
+							<div class="form-control">
+								<label class="label cursor-pointer">
+									<span class="label-text">Scuola</span>
+									<input type="radio" name="category" value="school" class="radio checked:bg-accent" checked />
+								</label>
+							</div>
+							<div class="form-control">
+								<label class="label cursor-pointer">
+									<span class="label-text">App</span>
+									<input type="radio" name="category" value="app" class="radio checked:bg-accent" />
+								</label>
+							</div>
+							<div class="form-control">
+								<label class="label cursor-pointer">
+									<span class="label-text">Idea</span>
+									<input type="radio" name="category" value="idea" class="radio checked:bg-accent" />
+								</label>
+							</div>
+							<label class="label">
+								<span class="label-text-alt text-error"><?=$category_error ?? "";?></span>
 							</label>
 						</div>
 						<!-- <div class="my-2 mb-3">

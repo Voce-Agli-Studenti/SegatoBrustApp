@@ -2,8 +2,8 @@ const staticCache = 'staticCache';
 const dynamicCache = 'dynamicCache';
 
 const assets = [
-	'/assets/css/style.css',
-	'/assets/css/style.min.css?v=1.2',
+	'/assets/css/style.css?v=1.0',
+	'/assets/css/style.min.css?v=1.54',
 	'/assets/js/pwa.js',
 	'/assets/js/app.js',
 	'/assets/js/swup.js',

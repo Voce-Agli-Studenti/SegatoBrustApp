@@ -2,6 +2,7 @@
 set_include_path($_SERVER['DOCUMENT_ROOT']);
 define("PAGE_TITLE", "FeedBack");
 define("NAVIGATION_PAGE", "feedback");
+define("NAVIGATION_PAGE_FEEDBACK", $category);
 
 if (!defined("ROUTER_REQUIRED")) {die();}
 
@@ -10,16 +11,7 @@ require_once "includes/utils/commons.php";
 require_once "includes/components/templates/template.php";
 require_once "includes/utils/database/feedbacks.php";
 
-if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
-	$pass = true;
-
-	if (!isset($_POST['username']) || empty($_POST['username'])) {
-		$username_error = "L'username è obbligatorio";
-		$pass = false;
-	}
-}
-
-$feedbacks = get_feedbacks_full();
+$feedbacks = get_feedbacks_full($category);
 
 ?>
 
@@ -36,8 +28,10 @@ $feedbacks = get_feedbacks_full();
 
 		<?php include "includes/components/structure/navigations/main/top.php";?>
 
+		<?php include "includes/components/structure/navigations/pages/feedbacks.php";?>
+
 		<div class="transition-slide-down">
-			<div class="container max-w-3xl mx-auto px-6">
+			<div class="container max-w-3xl mx-auto pt-1 px-6">
 				<a href="/feedbacks/add/"
 					class="btn btn-square rounded-full fixed z-50 bottom-24 right-4 flex justify-center items-center text-accent btn-quick-action">
 					<span class="material-symbols-rounded">add</span>
@@ -46,8 +40,8 @@ $feedbacks = get_feedbacks_full();
 
 			<div class="container max-w-3xl mx-auto pb-24">
 
-				<?php for ($i = 0; $i < count($feedbacks); $i++):?>
-					<?php template_HTML("feedbacks/feedback", $feedbacks[$i]);?>
+				<?php for ($i = 0; $i < count($feedbacks); $i++): ?>
+				<?php template_HTML("feedbacks/feedback", $feedbacks[$i]);?>
 				<?php endfor;?>
 
 			</div>

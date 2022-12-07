@@ -12,11 +12,24 @@ $parts = split_url($_SERVER['REQUEST_URI'], "/feedbacks/", $_SERVER['QUERY_STRIN
 $parts_count = count($parts);
 
 if ($parts_count == 0) {
+	$category = "school";
 	require "feedbacks/feedback_list.php";
-
+	
 } else if ($parts_count == 1 || $parts_count == 2) {
-
-	if ($parts[0] == "add") {
+	
+	if ($parts[0] == "app") {
+		 $category = "app";
+		 require "feedbacks/feedback_list.php";
+		 
+		} elseif ($parts[0] == "school") {
+		$category = "school";
+		require "feedbacks/feedback_list.php";
+		
+	} elseif ($parts[0] == "ideas") {
+		$category = "ideas";
+		require "feedbacks/feedback_list.php";
+		
+	} else if ($parts[0] == "add") {
 
 		if (!USER_IS_LOGGED) {
 			redirect("/login/");

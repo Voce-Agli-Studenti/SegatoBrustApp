@@ -10,10 +10,11 @@ require_once "includes/utils/database/database_connection.php";
  * @param string $title Titolo del feedback
  * @param string $description Descrizione del feedback
  * @param boolean $is_anonymous Indica se il feedback è anonimo
+ * @param boolean $category Categoria del feedback
  *
  * @return string|boolean In caso di successo ritorna il feedback_id, altrimenti ritorna false
  */
-function add_feedback($user_id, $title, $description, $is_anonymous) {
+function add_feedback($user_id, $title, $description, $is_anonymous, $category) {
 	$pdo = pdo_connection();
 
 	$feedback_id = hash_hmac("sha256", uniqid(), "feedback_id");
@@ -24,6 +25,7 @@ function add_feedback($user_id, $title, $description, $is_anonymous) {
 		:title,
 		:description,
 		:is_anonymous,
+		:category,
 		CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0, 0
 		)");
 
@@ -33,6 +35,7 @@ function add_feedback($user_id, $title, $description, $is_anonymous) {
 		'title' => $title,
 		'description' => $description,
 		'is_anonymous' => intval($is_anonymous),
+		'category' => $category,
 	]);
 
 	return feedback_exists_by_id($feedback_id) ? $feedback_id : false;
@@ -106,7 +109,7 @@ function get_feedback_full_by_id($feedback_id) {
  * 
  * @return array Risultato della query
  */
-function get_feedbacks_full() {
+function get_feedbacks_full($category) {
 	$pdo = pdo_connection();
 	$pdo->setAttribute(PDO::ATTR_FETCH_TABLE_NAMES, true);
 
@@ -116,9 +119,9 @@ function get_feedbacks_full() {
 	(SELECT SUM(vote) FROM feedback_votes WHERE feedback_id=feedbacks.feedback_id) as votes 
 	FROM feedbacks 
 	INNER JOIN users ON feedbacks.user_id=users.user_id
-	WHERE is_deleted=0 AND is_completed=0 ORDER BY votes DESC, creation_date DESC");
+	WHERE feedbacks.category=:category AND feedbacks.is_deleted=0 AND feedbacks.is_completed=0 ORDER BY votes DESC, creation_date DESC");
 	
-	$stmt->execute([]);
+	$stmt->execute(['category' => $category]);
 	return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 }
 

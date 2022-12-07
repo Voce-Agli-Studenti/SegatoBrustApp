@@ -10128,6 +10128,11 @@ html {
   padding-right: 0px;
 }
 
+.checked\:bg-accent:checked {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--a) / var(--tw-bg-opacity));
+}
+
 .hover\:font-bold:hover {
   font-weight: 700;
 }
