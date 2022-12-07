@@ -38,7 +38,6 @@ self.addEventListener('push', function (event) {
 
 	const sendNotification = data => {
 		data = JSON.parse(data);
-		console.log(data);
 		return self.registration.showNotification(data.title, data.options);
 	};
 
@@ -63,8 +62,6 @@ self.addEventListener('notificationclick', (event) => {
 }, false);
 
 self.addEventListener('fetch', (event) => {
-	console.log(event.request);
-
 	if (event.request.method != "GET") {
 		return;
 	}
@@ -89,10 +86,10 @@ self.addEventListener('fetch', (event) => {
 			});
 		}));
 	} else {
-		console.log("caching dynamic content");
 		// Open the cache
 		event.respondWith(caches.open(dynamicCache).then((cache) => {
 			// Go to the network first
+
 			return fetch(event.request.url).then((fetchedResponse) => {
 				cache.put(event.request, fetchedResponse.clone());
 
