@@ -25,7 +25,7 @@ function moodle_autologin($wstoken, $privatetoken) {
 		"wstoken" => $wstoken,
 		"wsfunction" => "tool_mobile_get_autologin_key",
 		"moodlewsrestformat" => "json",
-		"privatetoken" => $wstoken
+		"privatetoken" => $privatetoken
 	];
 	
 	$response = http_post_request("https://moodle.segatobrustolon.edu.it/webservice/rest/server.php", $data);

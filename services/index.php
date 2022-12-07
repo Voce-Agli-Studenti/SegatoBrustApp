@@ -6,30 +6,8 @@ define("NAVIGATION_PAGE", "services");
 
 require_once "includes/utils/session.php";
 require_once "includes/utils/commons.php";
-require_once "includes/utils/moodle_api.php";
 
-if (USER_IS_LOGGED) {
-	$wstoken = $_COOKIE['moodle_token'];
-	$private_token = $_COOKIE['moodle_token'];
-
-	$user_data = moodle_get_site_info($wstoken);
-	if (isset($user_data['userid'])) {
-		
-		$autologin_data = moodle_autologin($wstoken, $private_token);
-		
-		if (isset($autologin_data['key'])) {
-			
-			$query = [
-				'userid' => $user_data['userid'],
-				'key' => $autologin_data['key'],
-			];
-
-			$moodle_url = $autologin_data['autologinurl'] . "?" . http_build_query($query);
-		}
-	}
-}
-
-$moodle_url = "https://moodle.segatobrustolon.edu.it/my/";
+$login_url = "https://moodle.segatobrustolon.edu.it/my/";
 
 ?>
 <!DOCTYPE html>
@@ -55,7 +33,7 @@ $moodle_url = "https://moodle.segatobrustolon.edu.it/my/";
 					</h2>
 
 					<div class="flex justify-start mb-4">
-						<a href="<?=$moodle_url?>" class="btn btn-square p-1 mx-1 first:ml-0 last:mr-0" target="_blank">
+						<a href="<?=$login_url?>" class="btn btn-square p-1 mx-1 first:ml-0 last:mr-0" target="_blank">
 							<img src="/assets/img/icons/moodle.png" alt="Moodle">
 						</a>
 					</div>

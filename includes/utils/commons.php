@@ -43,7 +43,10 @@ function http_post_request($url, $data) {
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
-	curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: multipart/form-data']);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, [
+		'Content-Type: multipart/form-data',
+		'User-agent: MoodleMobile'
+	]);
 	$result = curl_exec($ch);
 	return $result;
 }
