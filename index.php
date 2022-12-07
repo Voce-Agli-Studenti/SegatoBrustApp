@@ -36,7 +36,6 @@ require_once "includes/components/templates/template.php";
 
 					<h1 class="text-4xl font-bold text-base-content mb-4">
 						<?php if (USER_IS_LOGGED): ?>
-						<!-- <span class="text-accent">Ciao</span> <?=htmlspecialchars(USER['name']);?> -->
 						<?php else: ?>
 						<span class="text-accent">Accedi</span> a SegatoBrust App
 						<?php endif;?>
