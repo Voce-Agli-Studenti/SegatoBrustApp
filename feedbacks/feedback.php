@@ -107,7 +107,7 @@ $comments = get_feedback_comments_full($feedback_id);
 								<?=htmlspecialchars($feedback['feedbacks.title']);?>
 							</h2>
 							<p class="text-sm">
-								<?=htmlspecialchars($feedback['feedbacks.description']);?>
+								<?=nl2br(htmlspecialchars($feedback['feedbacks.description']));?>
 							</p>
 						</div>
 					</div>
