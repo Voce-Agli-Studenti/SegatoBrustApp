@@ -3,6 +3,11 @@ set_include_path($_SERVER['DOCUMENT_ROOT']);
 
 require_once "includes/utils/database/database_connection.php";
 
+/**
+ * Ottiene la somma di tutti i voti di un feedback
+ * 
+ * @param string $feedback_id ID del feedback
+ */
 function get_feedback_votes($feedback_id) {
 	$pdo = pdo_connection();
 
@@ -49,7 +54,7 @@ function cast_feedback_vote($user_id, $feedback_id, $vote) {
 }
 
 /**
- * Aggiunge/cambia un voto di un utente ad un feedback
+ * Elimina il voto di un utente ad un feedback
  *
  * @param string $user_id ID dell'utente
  * @param string $feedback_id ID del feedback

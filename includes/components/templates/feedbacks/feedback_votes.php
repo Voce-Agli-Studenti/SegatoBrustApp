@@ -20,7 +20,7 @@ $vote_count = intval($feedback_votes[0]['total']);
 ?>
 
 <?php if (USER_IS_LOGGED): ?>
-<button class="align-middle outline-none" onclick="castVote('<?=$feedback_id;?>', 1)">
+<button class="align-middle outline-none" onclick="castFeedbackVote('<?=$feedback_id;?>', 1)">
 	<span class="material-symbols-rounded <?=$user_vote == 1 ? "icon-fill text-success" : "";?>"
 		id="thbup_<?=$feedback_id;?>">
 		thumb_up
@@ -29,7 +29,7 @@ $vote_count = intval($feedback_votes[0]['total']);
 <span class="mx-1" id="thbcn_<?=$feedback_id;?>">
 	<?=$vote_count;?>
 </span>
-<button class="align-middle outline-none" onclick="castVote('<?=$feedback_id;?>', -1)">
+<button class="align-middle outline-none" onclick="castFeedbackVote('<?=$feedback_id;?>', -1)">
 	<span class="material-symbols-rounded <?=$user_vote == -1 ? "icon-fill text-error" : "";?>"
 		id="thbdn_<?=$feedback_id;?>">
 		thumb_down

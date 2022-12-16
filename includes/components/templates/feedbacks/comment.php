@@ -15,12 +15,14 @@ $comment = $data;
 			<div class="flex">
 				<div class="avatar mr-2">
 					<div class="w-6 h-6 rounded-full my-auto">
-						<img src="<?=$comment['users.avatar_url'];?>" alt="<?=htmlspecialchars($comment['users.first_name'] . " " . $comment['users.last_name']);?>">
+						<img
+							src="<?=boolval($comment['feedback_comments.is_anonymous']) ? "/assets/img/icons/user.png" : $comment['users.avatar_url'] ?>"
+							alt="<?=boolval($comment['feedback_comments.is_anonymous']) ? "Utente anonimo" : htmlspecialchars($comment['users.first_name'] . " " . $comment['users.last_name']) ?>">
 					</div>
 				</div>
 				<div class="">
 					<p class="text-xs font-semibold text-gray-800 dark:text-slate-100">
-						<?=htmlspecialchars($comment['users.first_name'] . " " . $comment['users.last_name']);?>
+						<?=boolval($comment['feedback_comments.is_anonymous']) ? "Utente anonimo" : htmlspecialchars($comment['users.first_name'] . " " . $comment['users.last_name']) ?>
 					</p>
 					<p class="text-xs text-gray-600 dark:text-slate-400">
 						<?=time_elapsed_string($comment['feedback_comments.creation_date']);?></p>
@@ -30,5 +32,10 @@ $comment = $data;
 		<p class="text-sm">
 			<?=htmlspecialchars($comment['feedback_comments.text'])?>
 		</p>
+		<div class="grid">
+			<div class="justify-self-end z-20">
+				<?php template_HTML("feedbacks/feedback_comment_votes", ['feedback_comment_id' => $comment['feedback_comments.feedback_comment_id']])?>
+			</div>
+		</div>
 	</div>
 </div>

@@ -4,9 +4,9 @@ const dynamicCache = 'dynamicCache';
 const assets = [
 	'/assets/css/style.css?v=1.0',
 	'/assets/css/style.min.css?v=1.54',
-	'/assets/js/pwa.js',
-	'/assets/js/app.js',
-	'/assets/js/swup.js',
+	'/assets/js/pwa.js?v=2',
+	'/assets/js/app.js?v=1.2',
+	'/assets/js/swup.js?v=1',
 	'https://unpkg.com/swup@latest/dist/swup.min.js',
 ];
 

@@ -1,0 +1,54 @@
+<?php
+set_include_path($_SERVER['DOCUMENT_ROOT']);
+
+require_once "includes/utils/database/feedback_comment_votes.php";
+require_once "includes/utils/database/feedback_comments.php";
+
+$feedback_comment_id = $data['feedback_comment_id'];
+
+$comment_votes = get_feedback_comment_votes($feedback_comment_id);
+
+if (USER_IS_LOGGED) {
+	$user_comment_vote = get_feedback_comment_vote(USER['user_id'], $feedback_comment_id);
+	$user_vote = empty($user_comment_vote) ? 0 : $user_comment_vote[0]['vote'];
+} else {
+	$user_vote = 0;
+}
+
+$vote_count = intval($comment_votes[0]['total']);
+
+?>
+
+<?php if (USER_IS_LOGGED): ?>
+<button class="align-middle outline-none" onclick="castCommentVote('<?=$feedback_comment_id;?>', 1)">
+	<span class="material-symbols-rounded <?=$user_vote == 1 ? "icon-fill text-success" : "";?>"
+		id="cthbup_<?=$feedback_comment_id;?>">
+		thumb_up
+	</span>
+</button>
+<span class="mx-1" id="cthbcn_<?=$feedback_comment_id;?>">
+	<?=$vote_count;?>
+</span>
+<button class="align-middle outline-none" onclick="castCommentVote('<?=$feedback_comment_id;?>', -1)">
+	<span class="material-symbols-rounded <?=$user_vote == -1 ? "icon-fill text-error" : "";?>"
+		id="cthbdn_<?=$feedback_comment_id;?>">
+		thumb_down
+	</span>
+</button>
+<?php else: ?>
+<a href="/login/" class="h-full align-middle outline-none">
+	<span class="material-symbols-rounded <?=$user_vote == 1 ? "icon-fill text-success" : "";?>"
+		id="cthbup_<?=$feedback_comment_id;?>">
+		thumb_up
+	</span>
+</a>
+<span class="mx-1" id="cthbcn_<?=$feedback_comment_id;?>">
+	<?=$vote_count;?>
+</span>
+<a href="/login/" class="h-full align-middle outline-none">
+	<span class="material-symbols-rounded <?=$user_vote == -1 ? "icon-fill text-error" : "";?>"
+		id="cthbdn_<?=$feedback_comment_id;?>">
+		thumb_down
+	</span>
+</a>
+<?php endif;?>

@@ -38,7 +38,7 @@ $feedback = $data;
 		</a>
 		<div class="grid">
 			<div class="justify-self-end z-20">
-				<?php template_HTML("feedbacks/vote_section", ['feedback_id' => $feedback['feedbacks.feedback_id']])?>
+				<?php template_HTML("feedbacks/feedback_votes", ['feedback_id' => $feedback['feedbacks.feedback_id']])?>
 			</div>
 		</div>
 

@@ -17,9 +17,14 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "add_comment") {
 	$pass = true;
 
 	$comment_text = trim($_POST['comment_text'] ?? "");
+	$is_anonymous = false;
 
 	if (empty($comment_text)) {
 		$pass = false;
+	}
+
+	if (isset($_POST['is_anonymous'])) {
+		$is_anonymous = true;
 	}
 
 	if (!USER_IS_LOGGED) {
@@ -28,13 +33,15 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "add_comment") {
 	}
 
 	if ($pass) {
-		add_feedback_comment($feedback_id, USER['user_id'], $comment_text);
+		add_feedback_comment($feedback_id, USER['user_id'], $comment_text, $is_anonymous);
 	}
 }
 
 $feedback = get_feedback_full_by_id($feedback_id)[0];
 
 $comments = get_feedback_comments_full($feedback_id);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -71,6 +78,15 @@ $comments = get_feedback_comments_full($feedback_id);
 								<input type="text" placeholder="Aggiungi un commento" class="input input-bordered w-full"
 									name="comment_text" />
 								<input type="hidden" name="action_type" value="add_comment">
+								<label class="label cursor-pointer">
+									<input type="checkbox" name="is_anonymous" class="checkbox mr-2" />
+									<span class="label-text whitespace-nowrap mr-2">
+										Anonimo
+									</span>
+									<div class="tooltip tooltip-top h-min" data-tip="Il tuo nome non verrà pubblicato">
+										<span class="material-symbols-rounded">help</span>
+									</div>
+								</label>
 								<button type="submit" class="btn w-full btn-accent mt-3">
 									Commenta
 								</button>
@@ -124,10 +140,10 @@ $comments = get_feedback_comments_full($feedback_id);
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="">
 					<?php foreach ($comments as $comment): ?>
-						<?php template_HTML("feedbacks/comment", $comment);?>
+					<?php template_HTML("feedbacks/comment", $comment);?>
 					<?php endforeach;?>
 				</div>
 			</div>

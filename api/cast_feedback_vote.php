@@ -9,26 +9,28 @@ require_once "includes/utils/database/feedback_votes.php";
 
 header("Content-type: application/json");
 
+$data = json_decode(file_get_contents("php://input"), true);
+
 if (!USER_IS_LOGGED) {
 	$json = ['ok' => false, 'error_code' => 403, 'description' => "Forbidden: login required"];
 	http_response_code(403);
 	die(json_encode($json));
 }
 
-if (!isset($_POST['feedback_id']) || empty($_POST['feedback_id'])) {
+if (!isset($data['feedback_id']) || empty($data['feedback_id'])) {
 	$json = ['ok' => false, 'error_code' => 400, 'description' => "Bad Request: feedback_id is required"];
 	http_response_code(400);
 	die(json_encode($json));
 }
 
-if (!isset($_POST['vote']) || empty($_POST['vote'])) {
+if (!isset($data['vote']) || empty($data['vote'])) {
 	$json = ['ok' => false, 'error_code' => 400, 'description' => "Bad Request: vote is required"];
 	http_response_code(400);
 	die(json_encode($json));
 }
 
-$feedback_id = $_POST['feedback_id'];
-$vote = intval($_POST['vote']);
+$feedback_id = $data['feedback_id'];
+$vote = intval($data['vote']);
 
 if ($vote != 1 && $vote != -1) {
 	$json = ['ok' => false, 'error_code' => 400, 'description' => "Bad Request: invalid value for vote"];
