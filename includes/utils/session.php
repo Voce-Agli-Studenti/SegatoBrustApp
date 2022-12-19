@@ -3,6 +3,7 @@ ob_implicit_flush(true);
 set_include_path($_SERVER['DOCUMENT_ROOT']);
 
 require_once "includes/utils/commons.php";
+require_once "includes/utils/costants.php";
 require_once "includes/utils/database/users.php";
 
 session_set_cookie_params(2592000, "/", "", true, false);

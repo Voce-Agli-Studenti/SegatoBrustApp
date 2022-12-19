@@ -12,6 +12,7 @@ require_once "includes/utils/database/users.php";
 require_once "includes/utils/database/feedbacks.php";
 require_once "includes/utils/database/feedback_votes.php";
 require_once "includes/utils/database/feedback_comments.php";
+require_once "includes/utils/database/feedback_medias.php";
 
 if (isset($_POST['action_type']) && $_POST['action_type'] == "add_comment") {
 	$pass = true;
@@ -41,7 +42,7 @@ $feedback = get_feedback_full_by_id($feedback_id)[0];
 
 $comments = get_feedback_comments_full($feedback_id);
 
-
+$medias = get_feedback_medias($feedback_id);
 ?>
 
 <!DOCTYPE html>
@@ -125,6 +126,16 @@ $comments = get_feedback_comments_full($feedback_id);
 							<p class="text-sm">
 								<?=nl2br(htmlspecialchars($feedback['feedbacks.description']));?>
 							</p>
+
+							<?php if (!empty($medias)): ?>
+							<div class="mt-4">
+								<?php if (in_array($medias[0]['mime_type'], IMAGE_MIME_TYPES)):?>
+								<img src="/media/feedbacks/<?=$medias[0]['feedback_media_id']?>" class="rounded" alt="">
+								<?php elseif (in_array($medias[0]['mime_type'], VIDEO_MIME_TYPES)): ?>
+								<video src="/media/feedbacks/<?=$medias[0]['feedback_media_id']?>"></video>
+								<?php endif;?>
+							</div>
+							<?php endif;?>
 						</div>
 					</div>
 					<div class="flex justify-between px-4 pb-4">

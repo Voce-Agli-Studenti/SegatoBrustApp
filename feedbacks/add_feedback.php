@@ -8,6 +8,7 @@ if (!defined("ROUTER_REQUIRED")) {die();}
 require_once "includes/utils/session.php";
 require_once "includes/utils/commons.php";
 require_once "includes/utils/database/feedbacks.php";
+require_once "includes/utils/database/feedback_medias.php";
 
 if (isset($_POST['action_type']) && $_POST['action_type'] == "new_feedback") {
 	$pass = true;
@@ -31,11 +32,18 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "new_feedback") {
 	}	
 
 	if ($pass) {
+		
 		$feedback_id = add_feedback(USER['user_id'], $title, $description, $is_anonymous, $category);
-
+		
 		if ($feedback_id) {
+			if (!empty($_FILES['media'])) {
+				$media = file_get_contents($_FILES['media']['tmp_name']);
+				add_feedback_media($feedback_id, $media, $_FILES['media']['type']);
+			}
+
 			redirect("/feedbacks/" . $feedback_id);
 		}
+
 	}
 }
 
@@ -59,7 +67,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "new_feedback") {
 
 			<div class="container max-w-3xl mx-auto pb-24">
 				<div class="px-3 mt-4">
-					<form action="" method="post" id="submitForm">
+					<form action="" method="post" id="submitForm" enctype="multipart/form-data">
 						<input type="hidden" name="action_type" value="new_feedback">
 						<div class="form-control w-full">
 							<input type="text" name="title" placeholder="Titolo"
@@ -69,19 +77,19 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "new_feedback") {
 							</label>
 						</div>
 						<textarea class="textarea textarea-bordered w-full" name="description" placeholder="Descrizione"
-						rows="10"></textarea>
-						<div class="form-control w-min flex flex-row">
-							<label class="label cursor-pointer">
-								<input type="checkbox" name="is_anonymous" class="checkbox mr-2" />
-								<span class="label-text whitespace-nowrap mr-2">
-									Anonimo
-								</span>
-								<div class="tooltip tooltip-top h-min" data-tip="Il tuo nome non verrà pubblicato">
-									<span class="material-symbols-rounded">help</span>
-								</div>
+							rows="10"></textarea>
+
+						<div class="form-control my-4">
+							<label class="label">
+								<span class="text-md font-bold">Foto o video</span>
 							</label>
+							<input type="file" class="file-input w-full" name="media" accept="image/*,video/*"
+								capture="environment" />
 						</div>
-						<div class="form-control mb-4">
+						<div class="form-control my-4">
+							<label class="label">
+								<span class="text-md font-bold">Categoria</span>
+							</label>
 							<div class="form-control">
 								<label class="label cursor-pointer">
 									<span class="label-text">Scuola</span>
@@ -97,19 +105,25 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "new_feedback") {
 							<div class="form-control">
 								<label class="label cursor-pointer">
 									<span class="label-text">Idea</span>
-									<input type="radio" name="category" value="idea" class="radio checked:bg-accent" />
+									<input type="radio" name="category" value="ideas" class="radio checked:bg-accent" />
 								</label>
 							</div>
 							<label class="label">
 								<span class="label-text-alt text-error"><?=$category_error ?? "";?></span>
 							</label>
 						</div>
-						<!-- <div class="my-2 mb-3">
-							<label class="label">
-								<span class="label-text">Foto</span>
+						<div class="form-control w-min flex flex-row mt-2">
+							<label class="label cursor-pointer">
+								<input type="checkbox" name="is_anonymous" class="checkbox mr-2" />
+								<span class="label-text whitespace-nowrap mr-2">
+									Anonimo
+								</span>
+								<div class="tooltip tooltip-top h-min" data-tip="Il tuo nome non verrà pubblicato">
+									<span class="material-symbols-rounded">help</span>
+								</div>
 							</label>
-							<input type="file" name="media[]" class="file-input file-input-bordered w-full" multiple />
-						</div> -->
+						</div>
+
 						<div class="flex justify-end">
 							<button type="submit" class="btn btn-accent" id="submitBtn">
 								Pubblica
