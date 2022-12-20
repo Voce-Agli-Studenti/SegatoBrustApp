@@ -32,21 +32,21 @@ require_once "includes/utils/commons.php";
 						<span>Matematica</span>
 					</h2>
 
-					<div class="flex justify-between mb-4">
-						<a href="https://forms.gle/1YHDNNgipAakDUUZA" class="btn btn-square mx-2 first:ml-0 last:mr-0" target="_blank" rel="noopener noreferrer">
-							1
+					<div class="d-flex mb-4">
+						<a href="https://forms.gle/1YHDNNgipAakDUUZA" class="btn my-2 first:ml-0 last:mr-0" target="_blank" rel="noopener noreferrer">
+							Classi 1ᵉ
 						</a>
-						<a href="https://forms.gle/1YHDNNgipAakDUUZA" class="btn btn-square mx-2 first:ml-0 last:mr-0" target="_blank" rel="noopener noreferrer">
-							2
+						<a href="https://forms.gle/1YHDNNgipAakDUUZA" class="btn my-2 first:ml-0 last:mr-0" target="_blank" rel="noopener noreferrer">
+							Classi 2ᵉ
 						</a>
-						<a href="https://forms.gle/WzCEF8kBGwFekMyT9" class="btn btn-square mx-2 first:ml-0 last:mr-0" target="_blank" rel="noopener noreferrer">
-							3
+						<a href="https://forms.gle/WzCEF8kBGwFekMyT9" class="btn my-2 first:ml-0 last:mr-0" target="_blank" rel="noopener noreferrer">
+							Classi 3ᵉ
 						</a>
-						<a href="https://forms.gle/HhQW3Au1UHz8EMin7" class="btn btn-square mx-2 first:ml-0 last:mr-0" target="_blank" rel="noopener noreferrer">
-							4
+						<a href="https://forms.gle/HhQW3Au1UHz8EMin7" class="btn my-2 first:ml-0 last:mr-0" target="_blank" rel="noopener noreferrer">
+							Classi 4ᵉ
 						</a>
-						<a href="https://forms.gle/xWzfdfjwAQ9pwJdt5" class="btn btn-square mx-2 first:ml-0 last:mr-0" target="_blank" rel="noopener noreferrer">
-							5
+						<a href="https://forms.gle/xWzfdfjwAQ9pwJdt5" class="btn my-2 first:ml-0 last:mr-0" target="_blank" rel="noopener noreferrer">
+							Classi 5ᵉ
 						</a>
 					</div>
 					
