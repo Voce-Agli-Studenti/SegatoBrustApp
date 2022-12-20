@@ -19,3 +19,6 @@
 <link rel="apple-touch-icon" href="/assets/img/icon-512.png">
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<?php if (USER_IS_LOGGED):?>
+<script src="/assets/js/notifications.js?v=1.1"></script>
+<?php endif;?>

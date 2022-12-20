@@ -78,6 +78,13 @@ function castCommentVote(feedback_comment_id, vote) {
 		});
 }
 
+function notificationBtnClick() {
+	if (isPushEnabled) {
+		push_unsubscribe();
+	} else {
+		push_subscribe();
+	}
+}
 
 $(document).ready(() => {
 	push_updateSubscription();

@@ -21,7 +21,6 @@ require_once "includes/utils/commons.php";
 
 		<?php include "includes/components/structure/navigations/main/top.php";?>
 
-
 		<div class="transition-slide-down">
 
 			<div class="container max-w-3xl mx-auto pb-24">
@@ -29,7 +28,7 @@ require_once "includes/utils/commons.php";
 					<h1 class="text-xl font-semibold text-base-content mb-2">
 						Notifiche
 					</h1>
-					<button class="btn normal-case" id="push-subscription-button">
+					<button class="btn normal-case" onclick="notificationBtnClick()" id="push-subscription-button">
 						Abilita notifiche
 					</button>
 				</div>
@@ -41,7 +40,6 @@ require_once "includes/utils/commons.php";
 	</main>
 
 	<?php include "includes/components/structure/scripts/scripts.php";?>
-	<script src="/assets/js/pages/settings.js"></script>
 
 </body>
 
