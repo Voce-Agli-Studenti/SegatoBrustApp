@@ -76,7 +76,7 @@ $medias = get_feedback_medias($feedback_id);
 						</h3>
 						<div class="mt-3">
 							<form action="" method="post">
-								<input type="text" placeholder="Aggiungi un commento" class="input input-bordered w-full"
+								<input type="text" autocomplete="off" placeholder="Aggiungi un commento" class="input input-bordered w-full"
 									name="comment_text" />
 								<input type="hidden" name="action_type" value="add_comment">
 								<label class="label cursor-pointer">

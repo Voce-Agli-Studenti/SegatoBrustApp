@@ -70,7 +70,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "new_feedback") {
 					<form action="" method="post" id="submitForm" enctype="multipart/form-data">
 						<input type="hidden" name="action_type" value="new_feedback">
 						<div class="form-control w-full">
-							<input type="text" name="title" placeholder="Titolo"
+							<input type="text" autocomplete="off" name="title" placeholder="Titolo"
 								class="input input-bordered w-full <?=empty($title_error) ? "" : "input-error";?>" autofocus required />
 							<label class="label">
 								<span class="label-text-alt text-error"><?=$title_error ?? "";?></span>
