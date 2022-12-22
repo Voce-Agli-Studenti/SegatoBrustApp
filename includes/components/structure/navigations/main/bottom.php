@@ -9,7 +9,7 @@
 					Home
 				</span>
 			</a>
-			<a href="/news/" class="flex flex-col flex-grow py-3 px-2">
+			<a href="/news/famiglia/" class="flex flex-col flex-grow py-3 px-2">
 				<div class="rounded-full <?=NAVIGATION_PAGE == "news" ? "bg-base-100" : "bg-transparent"?> mx-auto px-5 pt-1 align-middle">
 					<span class="text-lg material-symbols-rounded <?=NAVIGATION_PAGE == "news" ? "icon-fill" : ""?>">newspaper</span>
 				</div>
