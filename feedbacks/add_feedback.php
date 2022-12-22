@@ -36,7 +36,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "new_feedback") {
 		$feedback_id = add_feedback(USER['user_id'], $title, $description, $is_anonymous, $category);
 		
 		if ($feedback_id) {
-			if (!empty($_FILES['media'])) {
+			if (!empty($_FILES['media']['tmp_name'])) {
 				$media = file_get_contents($_FILES['media']['tmp_name']);
 				add_feedback_media($feedback_id, $media, $_FILES['media']['type']);
 			}
