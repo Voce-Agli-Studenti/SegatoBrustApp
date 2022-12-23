@@ -11,8 +11,8 @@
 <meta property="og:site_name" content="SegatoBrust App" />
 <meta property="og:description" content="La nuova app dell'istituto Segato-Brustolon" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://feedback.segato.iacca.ml" />
-<meta property="og:image" content="https://feedback.segato.iacca.ml/assets/img/icon-512.png" />
+<meta property="og:url" content="https://app.voceaglistudenti.ml" />
+<meta property="og:image" content="https://app.voceaglistudenti.ml/assets/img/icon-512.png" />
 <link defer rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,300,0..1,-50..200" />
 
 <meta name="theme-color" content="#00B2A7">

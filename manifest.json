@@ -1,6 +1,7 @@
 {
 	"short_name": "SegatoBrustolon APP",
 	"name": "SegatoBrust APP",
+	"scope": "/",
 	"icons": [
 		{
 			"src": "/assets/img/icon-192.png",
@@ -51,10 +52,9 @@
 			]
 		}
 	],
-	"id": "ml.iacca.segato.feedback",
+	"id": "ml.voceaglistudenti.app",
 	"start_url": "/?source=pwa",
 	"background_color": "#2a303c",
 	"display": "standalone",
-	"scope": "feedback.segato.iacca.ml",
 	"theme_color": "#2a303c"
 }
