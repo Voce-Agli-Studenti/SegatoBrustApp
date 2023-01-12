@@ -5,7 +5,7 @@ require_once "includes/utils/session.php";
 require_once "includes/components/templates/template.php";
 require_once "includes/utils/database/dashboard_messages.php";
 
-$dashboard_messages = get_dashboard_messages();
+$dashboard_messages = get_dashboard_messages_by_category("message");
 ?>
 
 

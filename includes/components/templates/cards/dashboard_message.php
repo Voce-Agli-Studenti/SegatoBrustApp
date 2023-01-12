@@ -32,6 +32,7 @@
 <input type="checkbox" id="modal_<?=$data['dashboard_message_id']?>" class="modal-toggle" />
 <label for="modal_<?=$data['dashboard_message_id']?>" class="modal cursor-pointer z-50">
 	<label class="modal-box relative" for="">
+		<label for="modal_<?=$data['dashboard_message_id']?>" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 		<h3 class="text-lg font-bold">
 			<?=htmlspecialchars($data['title'])?>
 		</h3>

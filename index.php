@@ -48,7 +48,9 @@ $com = json_decode($com, true);
 					<?php template_HTML("calendars/class_schedule");?>
 					<?php endif;?>
 
-					<div class="">
+					<?php template_HTML("sections/photo_carousel");?>
+
+					<div class="mt-4">
 						<h4 class="text-lg font-semibold">
 							Ultimi comunicati
 						</h4>
