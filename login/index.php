@@ -31,7 +31,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 		if ($moodle_login) {
 			$user_data = moodle_get_user_info($moodle_login['token'], $username);
 			
-			if (empty($user_data)) {
+			if (empty($user_data) || isset($user_data['exception'])) {
 				$password_error = "Nome utente o password errati";
 			} else {
 				$site_data = moodle_get_site_info($moodle_login['token']);
