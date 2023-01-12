@@ -22,7 +22,7 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "new_feedback") {
 		$pass = false;
 	}
 
-	if (!($category == "app" || $category == "school" || $category == "idea")) {
+	if (!($category == "app" || $category == "school" || $category == "ideas")) {
 		$category_error = "Scegliere una categoria tra quelle nella lista";
 		$pass = false;
 	}
