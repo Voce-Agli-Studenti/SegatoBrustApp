@@ -13,6 +13,10 @@ require_once "includes/utils/database/feedbacks.php";
 require_once "includes/utils/database/feedback_votes.php";
 require_once "includes/utils/database/feedback_comments.php";
 require_once "includes/utils/database/feedback_medias.php";
+require_once "includes/utils/Parsedown.php";
+
+$Parsedown = new Parsedown();
+$Parsedown->setSafeMode(true);
 
 if (isset($_POST['action_type']) && $_POST['action_type'] == "add_comment") {
 	$pass = true;
@@ -76,8 +80,8 @@ $medias = get_feedback_medias($feedback_id);
 						</h3>
 						<div class="mt-3">
 							<form action="" method="post">
-								<input type="text" autocomplete="off" placeholder="Aggiungi un commento" class="input input-bordered w-full"
-									name="comment_text" />
+								<input type="text" autocomplete="off" placeholder="Aggiungi un commento"
+									class="input input-bordered w-full" name="comment_text" />
 								<input type="hidden" name="action_type" value="add_comment">
 								<label class="label cursor-pointer">
 									<input type="checkbox" name="is_anonymous" class="checkbox mr-2" />
@@ -123,9 +127,10 @@ $medias = get_feedback_medias($feedback_id);
 							<h2 class="text-lg mb-3 font-medium text-gray-800 dark:text-slate-100">
 								<?=htmlspecialchars($feedback['feedbacks.title']);?>
 							</h2>
-							<p class="text-sm">
-								<?=nl2br(htmlspecialchars($feedback['feedbacks.description']));?>
-							</p>
+							<article class="prose lg:prose-xl">
+								<?=$Parsedown->text($feedback['feedbacks.description']);?>
+							</article>
+
 
 							<?php if (!empty($medias)): ?>
 							<div class="mt-4">

@@ -3,6 +3,10 @@ set_include_path($_SERVER['DOCUMENT_ROOT']);
 
 require_once "includes/components/templates/template.php";
 require_once "includes/utils/commons.php";
+require_once "includes/utils/Parsedown.php";
+
+$Parsedown = new Parsedown();
+$Parsedown->setSafeMode(true);
 
 $comment = $data;
 
@@ -30,7 +34,7 @@ $comment = $data;
 			</div>
 		</div>
 		<p class="text-sm">
-			<?=htmlspecialchars($comment['feedback_comments.text'])?>
+			<?=$Parsedown->line(htmlspecialchars($comment['feedback_comments.text']))?>
 		</p>
 		<div class="grid">
 			<div class="justify-self-end z-20">

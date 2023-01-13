@@ -1,3 +1,13 @@
+<?php
+set_include_path($_SERVER['DOCUMENT_ROOT']);
+
+require_once "includes/utils/Parsedown.php";
+
+$Parsedown = new Parsedown();
+$Parsedown->setSafeMode(true);
+
+?>
+
 <?php if (empty($data['image_url'])):?>
 <label for="modal_<?=$data['dashboard_message_id']?>" class="">
 	<div class="card card-compact bg-base-100 w-64 h-32">
@@ -37,9 +47,9 @@
 			<?=htmlspecialchars($data['title'])?>
 		</h3>
 		<div class="py-4">
-			<p>
-				<?=nl2br(htmlspecialchars(($data['text'])))?>
-			</p>
+			<article class="prose lg:prose-xl">
+				<?=$Parsedown->text($data['text']);?>
+			</article>
 		</div>
 	</label>
 </label>

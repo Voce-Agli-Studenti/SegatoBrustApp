@@ -12,6 +12,10 @@ require_once "includes/utils/database/users.php";
 require_once "includes/utils/database/polls.php";
 require_once "includes/utils/database/classes.php";
 require_once "includes/utils/database/poll_votes.php";
+require_once "includes/utils/Parsedown.php";
+
+$Parsedown = new Parsedown();
+$Parsedown->setSafeMode(true);
 
 $poll_data = json_decode($poll['data'], true);
 $options = $poll_data['options'];
@@ -101,7 +105,7 @@ $user_poll_vote = get_poll_vote(USER['user_id'], $poll_id);
 								<?=htmlspecialchars($poll['title']);?>
 							</h2>
 							<p class="text-sm">
-								<?=nl2br(htmlspecialchars($poll['description']));?>
+								<?=$Parsedown->text($poll['description']);?>
 							</p>
 							<p class="text-sm text-error">
 								<?=htmlspecialchars($user_can_vote_reason)?>
@@ -121,9 +125,8 @@ $user_poll_vote = get_poll_vote(USER['user_id'], $poll_id);
 												<label class="label cursor-pointer">
 													<input type="radio" name="poll_option" onchange="this.form.submit()"
 														value="<?=$option['id'];?>" class="radio radio-accent mr-2"
-														<?=($user_poll_vote[0]['vote'] ?? - 1) == $option['id'] ? "checked" : ""?> 
-														<?= $user_can_vote ? "" : "disabled"?>
-														/>
+														<?=($user_poll_vote[0]['vote'] ?? - 1) == $option['id'] ? "checked" : ""?>
+														<?= $user_can_vote ? "" : "disabled"?> />
 													<span class="label-text w-full">
 														<progress class="progress progress-accent w-full"
 															value="<?=get_poll_votes_count($poll['poll_id'], $option['id'])[0]['vote_count'];?>"
