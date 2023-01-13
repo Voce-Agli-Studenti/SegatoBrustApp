@@ -19,6 +19,21 @@ function get_class_by_moodle_category_id($moodle_category_id) {
 }
 
 /**
+ * Ottiene una classe dato il suo class_id
+ * 
+ * @param string $class_id ID della classe
+ * 
+ * @return array Risultati della query
+ */
+function get_class_by_id($class_id) {
+	$pdo = pdo_connection();
+
+	$stmt = $pdo->prepare("SELECT * FROM classes WHERE class_id=:class_id");
+	$stmt->execute(['class_id' => $class_id]);
+	return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+}
+
+/**
  * Controlla se una classe esiste dato il suo moodle_category_id
  * 
  * @param string $moodle_category_id ID della categoria moodle della classe
