@@ -117,9 +117,14 @@ $user_poll_vote = get_poll_vote(USER['user_id'], $poll_id);
 									<input type="hidden" name="action_type" value="cast_vote">
 
 									<?php foreach ($options as $option): ?>
+									<?php $vote_count = get_poll_votes_count($poll['poll_id'], $option['id'])[0]['vote_count'];?>
 									<div class="mb-4">
 										<p class="mb-2 font-bold">
 											<?=htmlspecialchars($option['title']);?>
+											-
+											<span class="font-normal text-accent">
+												<?=$vote_count?>
+											</span>
 										</p>
 										<div class="flex items-center">
 											<div class="form-control w-full">
@@ -129,8 +134,7 @@ $user_poll_vote = get_poll_vote(USER['user_id'], $poll_id);
 														<?=($user_poll_vote[0]['vote'] ?? - 1) == $option['id'] ? "checked" : ""?>
 														<?= $user_can_vote ? "" : "disabled"?> />
 													<span class="label-text w-full">
-														<progress class="progress progress-accent w-full"
-															value="<?=get_poll_votes_count($poll['poll_id'], $option['id'])[0]['vote_count'];?>"
+														<progress class="progress progress-accent w-full" value="<?=$vote_count?>"
 															max="<?=$total_votes;?>"></progress>
 													</span>
 												</label>
