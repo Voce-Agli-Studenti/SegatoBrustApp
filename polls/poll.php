@@ -25,6 +25,7 @@ $user_can_vote = true;
 $user_can_vote_reason = "";
 
 if (USER_IS_LOGGED) {
+	$user_poll_vote = get_poll_vote(USER['user_id'], $poll_id);
 	$user_class = get_class_by_id(USER['class_id']);
 
 	if (isset($vote_conditions['class_years']) && !empty($vote_conditions['class_years'])) {
@@ -79,7 +80,6 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "cast_vote" && $use
 }
 
 $total_votes = get_poll_total_votes_count($poll_id)[0]['total_votes'];
-$user_poll_vote = get_poll_vote(USER['user_id'], $poll_id);
 
 ?>
 
