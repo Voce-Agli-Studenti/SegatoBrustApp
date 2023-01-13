@@ -35,6 +35,8 @@ $com = json_decode($com, true);
 			<div class="container max-w-3xl mx-auto pb-24">
 
 				<div class="px-4 py-4">
+					<?php template_HTML("sections/dashboard_alert");?>
+
 					<?php template_HTML("sections/dashboard_messages");?>
 
 					<h1 class="text-4xl font-bold text-base-content my-3">
