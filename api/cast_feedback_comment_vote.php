@@ -28,6 +28,12 @@ if (!isset($data['vote']) || empty($data['vote'])) {
 	die(json_encode($json));
 }
 
+if (!feedback_exists_by_id($data['feedback_comment_id'])) {
+	$json = ['ok' => false, 'error_code' => 404, 'description' => "Bad Request: feedback comment not found"];
+	http_response_code(404);
+	die(json_encode($json));
+}
+
 $feedback_comment_id = $data['feedback_comment_id'];
 $vote = intval($data['vote']);
 
