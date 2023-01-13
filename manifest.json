@@ -52,6 +52,11 @@
 			]
 		}
 	],
+	"url_handlers": [
+		{
+			"origin": "https://app.voceaglistudenti.ml"
+		}
+	],
 	"id": "ml.voceaglistudenti.app",
 	"start_url": "/?source=pwa",
 	"background_color": "#2a303c",
