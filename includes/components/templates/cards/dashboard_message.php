@@ -47,7 +47,7 @@ $Parsedown->setSafeMode(true);
 			<?=htmlspecialchars($data['title'])?>
 		</h3>
 		<div class="py-4">
-			<article class="prose lg:prose-xl">
+			<article class="prose">
 				<?=$Parsedown->text($data['text']);?>
 			</article>
 		</div>

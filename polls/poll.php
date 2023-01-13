@@ -104,14 +104,15 @@ $user_poll_vote = get_poll_vote(USER['user_id'], $poll_id);
 							<h2 class="text-lg mb-3 font-medium text-gray-800 dark:text-slate-100">
 								<?=htmlspecialchars($poll['title']);?>
 							</h2>
-							<p class="text-sm">
+							<article class="prose">
 								<?=$Parsedown->text($poll['description']);?>
-							</p>
-							<p class="text-sm text-error">
+							</article>
+
+							<p class="text-sm text-error mt-8">
 								<?=htmlspecialchars($user_can_vote_reason)?>
 							</p>
 
-							<div class="mt-10">
+							<div class="mt-4">
 								<form action="" method="post">
 									<input type="hidden" name="action_type" value="cast_vote">
 

@@ -127,7 +127,7 @@ $medias = get_feedback_medias($feedback_id);
 							<h2 class="text-lg mb-3 font-medium text-gray-800 dark:text-slate-100">
 								<?=htmlspecialchars($feedback['feedbacks.title']);?>
 							</h2>
-							<article class="prose lg:prose-xl">
+							<article class="prose">
 								<?=$Parsedown->text($feedback['feedbacks.description']);?>
 							</article>
 
