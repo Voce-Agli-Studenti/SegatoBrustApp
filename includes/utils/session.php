@@ -47,4 +47,12 @@ if (!USER_IS_LOGGED && defined("LOGIN_REQUIRED") && LOGIN_REQUIRED) {
 
 if (USER_IS_LOGGED) {
 	update_user_status(USER['user_id']);
+
+	if (hash_equals(USER['class_id'], TEACHER_CLASS_ID)) {
+		define("USER_IS_TEACHER", true);
+	} else {
+		define("USER_IS_TEACHER", false);
+	}
+} else {
+	define("USER_IS_TEACHER", false);
 }

@@ -25,7 +25,11 @@ $activites = get_day_activities_by_class_id(USER['class_id'], $day);
 <h4 class="text-lg font-semibold">
 	Orario di <?=$day_name?>
 </h4>
+
 <div class="flex flex-col my-3">
+	<?php if (empty($activites)):?>
+	<i>Non disponibile</i>
+	<?php else:?>
 	<?php foreach ($activites as $activity): ?>
 	<div class="mr-2 w-full">
 		<label for="modal_<?=$activity['activity_id'];?>" class="btn w-full mb-2">
@@ -49,4 +53,5 @@ $activites = get_day_activities_by_class_id(USER['class_id'], $day);
 	</div>
 
 	<?php endforeach;?>
+	<?php endif;?>
 </div>

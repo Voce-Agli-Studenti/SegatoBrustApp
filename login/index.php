@@ -44,6 +44,13 @@ if (isset($_POST['action_type']) && $_POST['action_type'] == "login") {
 				$class_id = null;
 
 				foreach ($user_courses as $course) {
+
+					if ($course['id'] == 2771) {
+						// L'utente è un insegnante: è iscritto al corso del collegio docenti
+						$class_id = TEACHER_CLASS_ID;
+						break;
+					}
+
 					if (class_exists_by_moodle_category_id($course['category'])) {
 						// L'utente è iscritto ad un corso che appartiene ad una clase conosciuta
 						$class_id = get_class_by_moodle_category_id($course['category'])[0]['class_id'];
