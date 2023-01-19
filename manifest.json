@@ -57,7 +57,11 @@
 			"origin": "https://app.voceaglistudenti.ml"
 		}
 	],
-	"id": "ml.voceaglistudenti.app",
+	"launch_handler": {
+    "client_mode": "focus-existing"
+  },
+	"handle_links": "preferred",
+	"id": "https://app.voceaglistudenti.ml",
 	"start_url": "/?source=pwa",
 	"background_color": "#2a303c",
 	"display": "standalone",

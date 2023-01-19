@@ -7,6 +7,13 @@
 <link defer rel="stylesheet" href="/assets/css/style.min.css?v=1.60">
 <link defer rel="stylesheet" href="/assets/css/style.css?v=1.0">
 
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#f7c10d">
+<meta name="msapplication-TileColor" content="#ffc40d">
+<meta name="theme-color" content="#2a303c">
+
 <meta property="og:title" content="<?=defined("PAGE_TITLE") ? htmlspecialchars(PAGE_TITLE) : "";?>" />
 <meta property="og:site_name" content="SegatoBrust App" />
 <meta property="og:description" content="La nuova app dell'istituto Segato-Brustolon" />
