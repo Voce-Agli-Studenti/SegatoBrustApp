@@ -42,8 +42,8 @@ for ($i = 0; $i < count($subscriptions); $i++) {
 
 	$defaultOptions = [
 		'TTL' => 300,
-		'urgency' => 'normal',
-		'topic' => 'new_event',
+		'urgency' => $data['urgency'] ?? "normal",
+		'topic' => $data['topic'] ?? "new_event",
 		'batchSize' => 200,
 	];
 
