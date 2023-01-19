@@ -119,7 +119,7 @@ function get_feedbacks_full($category) {
 	(SELECT SUM(vote) FROM feedback_votes WHERE feedback_id=feedbacks.feedback_id) as votes 
 	FROM feedbacks 
 	INNER JOIN users ON feedbacks.user_id=users.user_id
-	WHERE feedbacks.category=:category AND feedbacks.is_deleted=0 AND feedbacks.is_completed=0 ORDER BY votes DESC, creation_date DESC");
+	WHERE feedbacks.category=:category AND feedbacks.is_deleted=0 AND feedbacks.is_completed=0 ORDER BY votes DESC, feedbacks.creation_date DESC");
 	
 	$stmt->execute(['category' => $category]);
 	return $stmt->fetchAll(\PDO::FETCH_ASSOC);

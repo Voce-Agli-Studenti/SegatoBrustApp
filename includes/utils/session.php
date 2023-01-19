@@ -44,3 +44,7 @@ if (isset($_SESSION['user_id'])) {
 if (!USER_IS_LOGGED && defined("LOGIN_REQUIRED") && LOGIN_REQUIRED) {
 	redirect("/login/");
 }
+
+if (USER_IS_LOGGED) {
+	update_user_status(USER['user_id']);
+}

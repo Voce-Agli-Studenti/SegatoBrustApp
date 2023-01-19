@@ -31,7 +31,7 @@ FROM
 WHERE
   feedback_comments.feedback_id = :feedback_id
 ORDER BY
-  vote_count DESC;");
+feedback_comments.creation_date;");
 	$stmt->execute(['feedback_id' => $feedback_id]);
 	return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 }

@@ -18,7 +18,7 @@ function add_user($id, $first_name, $last_name, $email, $avatar_url, $class_id, 
 
 	$user_id = hash_hmac("sha256", $id, "user_id");
 
-	$stmt = $pdo->prepare("INSERT INTO users VALUES(:user_id, :first_name, :last_name, :email, :avatar_url, :class_id, :is_admin, 0)");
+	$stmt = $pdo->prepare("INSERT INTO users VALUES(:user_id, :first_name, :last_name, :email, :avatar_url, :class_id, :is_admin, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 0)");
 	$stmt->execute([
 		'user_id' => $user_id,
 		'first_name' => $first_name, 
@@ -51,6 +51,20 @@ function edit_user($user_id, $first_name, $last_name, $email, $avatar_url, $clas
 		'class_id' => $class_id, 
 		'user_id' => $user_id,
 	]);
+}
+
+/**
+ * Aggiorna lo stato di un utente
+ * 
+ * @param string $user_id ID dell'utente
+ * 
+ * @return void
+ */
+function update_user_status($user_id) {
+	$pdo = pdo_connection();
+
+	$stmt = $pdo->prepare("UPDATE users SET last_active=CURRENT_TIMESTAMP WHERE user_id=:user_id");
+	$stmt->execute(['user_id' => $user_id]);
 }
 
 /**
